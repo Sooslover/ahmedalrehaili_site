@@ -9,9 +9,9 @@
 // 3. Create a new form and get your form ID
 // 4. Replace 'YOUR_FORM_ID' below with your actual form ID
 const CONTACT_CONFIG = {
-  service: 'emailjs', // Options: 'formspree' or 'emailjs'
+  service: 'formspree', // Options: 'formspree' or 'emailjs'
   formspree: {
-    formId: 'YOUR_FORM_ID' // e.g., 'xwkgpzjr'
+    formId: 'mgvnjorq' // Your Formspree form ID
   },
   // OPTION 2: EMAILJS (More Features)
   // 1. Go to https://www.emailjs.com/
