@@ -1,48 +1,169 @@
-<!doctype html><html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ahmed Alrehaili | Researcher</title>
-<meta name="description" content="Researcher focused on Blockchain, IoT, Cloud Computing, and Technology Acceptance Models.">
-<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/css/style.css">
-</head><body>
-<header class="header"><div class="container nav">
-  <a class="brand" href="#top"><img src="assets/img/favicon.svg" alt="">Ahmed Alrehaili</a>
-  <nav class="links"><a href="#about">About</a><a href="#interests">Interests</a><a href="#publications">Publications</a><a href="#contact">Contact</a><button id="theme-toggle" class="switch">Theme</button></nav>
-</div></header>
-<section id="top" class="hero"><div class="container grid-hero">
-  <div><h1>Research in Blockchain and Smart Systems</h1>
-    <p class="subtitle">Postgraduate Researcher at the University of Sussex. Lecturer at the Islamic University of Madinah.</p>
-    <div class="badges"><span class="badge">Blockchain</span><span class="badge">IoT</span><span class="badge">Cloud Security</span><span class="badge">Smart Cities</span><span class="badge">Technology Acceptance</span></div>
-    <div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap"><a class="btn" href="#contact">Contact</a><a class="btn ghost" href="assets/cv/Ahmed_Alrehaili_CV.pdf">Download CV</a><a class="btn ghost" target="_blank" rel="noopener" href="https://orcid.org/0000-0002-6753-7684">ORCID</a></div>
-  </div>
-  <div><div class="card"><img src="assets/img/profile.svg" alt="Profile" style="width:100%; border-radius:12px"></div>
-    <div class="grid-3" style="margin-top:12px">
-      <div class="card kpi"><div class="num" id="citations">–</div><div class="label">Citations</div></div>
-      <div class="card kpi"><div class="num" id="hindex">–</div><div class="label">h‑index</div></div>
-      <div class="card kpi"><div class="num" id="i10">–</div><div class="label">i10‑index</div></div>
-    </div></div>
-</div></section>
-<main class="container">
-  <section id="about" class="section"><h2>About</h2>
-    <div class="grid-2"><div class="card">Ahmed Alrehaili is a Postgraduate Researcher at the University of Sussex and a lecturer at the Islamic University of Madinah. He received a master's in Applied Computer Science from Concordia University in 2012 and a bachelor's from Taibah University in 2008.</div>
-      <div class="card"><strong>Contact</strong><ul><li>Email: <a href="mailto:aa2709@sussex.ac.uk">aa2709@sussex.ac.uk</a></li><li>ORCID: <a target="_blank" rel="noopener" href="https://orcid.org/0000-0002-6753-7684">0000‑0002‑6753‑7684</a></li></ul></div></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ahmed Alrehaili | Researcher</title>
+  <meta name="description" content="Researcher focused on Blockchain, IoT, Cloud Computing, and Technology Acceptance Models.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container nav">
+      <a class="brand" href="#top">
+        <img src="assets/img/favicon.svg" alt="Ahmed Alrehaili Logo">
+        <span>Ahmed Alrehaili</span>
+      </a>
+      <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="links" id="nav-links">
+        <a href="#about">About</a>
+        <a href="#interests">Interests</a>
+        <a href="#publications">Publications</a>
+        <a href="#contact">Contact</a>
+        <button id="theme-toggle" class="switch" aria-label="Toggle dark mode">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+          </svg>
+          <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+          </svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <section id="top" class="hero">
+    <div class="container grid-hero">
+      <div class="hero-content">
+        <h1 class="hero-title">Research in Blockchain and Smart Systems</h1>
+        <p class="subtitle">Postgraduate Researcher at the University of Sussex. Lecturer at the Islamic University of Madinah.</p>
+        <div class="badges">
+          <span class="badge">Blockchain</span>
+          <span class="badge">IoT</span>
+          <span class="badge">Cloud Security</span>
+          <span class="badge">Smart Cities</span>
+          <span class="badge">Technology Acceptance</span>
+        </div>
+        <div class="hero-buttons">
+          <a class="btn btn-primary" href="#contact">Contact Me</a>
+          <a class="btn btn-ghost" href="assets/cv/Ahmed_Alrehaili_CV.pdf">Download CV</a>
+          <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://orcid.org/0000-0002-6753-7684">ORCID</a>
+        </div>
+      </div>
+      <div class="hero-aside">
+        <div class="card profile-card">
+          <img src="assets/img/profile.svg" alt="Ahmed Alrehaili Profile" class="profile-image">
+        </div>
+        <div class="grid-3 kpi-grid">
+          <div class="card kpi">
+            <div class="num" id="citations">–</div>
+            <div class="label">Citations</div>
+          </div>
+          <div class="card kpi">
+            <div class="num" id="hindex">–</div>
+            <div class="label">h‑index</div>
+          </div>
+          <div class="card kpi">
+            <div class="num" id="i10">–</div>
+            <div class="label">i10‑index</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
-  <section id="interests" class="section"><h2>Research Interests</h2>
-    <div class="grid-2"><div class="card">Blockchain data management and scalability, IoT systems for smart cities, edge computing and 5G security, cloud security, and human‑centred adoption models.</div>
-      <div class="card"><div class="badges"><span class="badge">Blockchain</span><span class="badge">IoT</span><span class="badge">Edge/5G</span><span class="badge">Cloud</span><span class="badge">TAM</span></div></div></div>
-  </section>
-  <section id="publications" class="section"><h2>Selected Publications <span class="meta">(showing <span id="pub-count">0</span>)</span></h2>
-    <div class="card" style="margin-bottom:10px"><input id="pub-search" type="search" placeholder="Filter by title or year"></div>
-    <div id="pub-list" class="grid-1" style="display:grid; gap:12px"></div>
-  </section>
-  <section id="contact" class="section"><h2>Contact</h2>
-    <div class="grid-2"><div class="card"><form name="contact" method="GET" action="mailto:aa2709@sussex.ac.uk">
-      <p class="meta">All fields are required</p>
-      <p><label>Full name<br><input type="text" name="name" required></label></p>
-      <p><label>Email<br><input type="email" name="email" required></label></p>
-      <p><label>Message<br><textarea name="body" rows="5" required></textarea></label></p>
-      <button class="btn" type="submit">Send message</button></form></div>
-      <div class="card">For collaboration and supervision requests, include a short topic summary, datasets, and timeline.</div></div>
-  </section>
-</main>
-<footer><div>© 2025 Ahmed Alrehaili</div></footer>
-<script src="assets/js/main.js"></script></body></html>
+
+  <main class="container">
+    <section id="about" class="section">
+      <h2 class="section-title">About</h2>
+      <div class="grid-2">
+        <div class="card content-card">
+          <p>Ahmed Alrehaili is a Postgraduate Researcher at the University of Sussex and a lecturer at the Islamic University of Madinah. He received a master's in Applied Computer Science from Concordia University in 2012 and a bachelor's from Taibah University in 2008.</p>
+        </div>
+        <div class="card content-card">
+          <h3>Contact Information</h3>
+          <ul class="contact-list">
+            <li>
+              <strong>Email:</strong>
+              <a href="mailto:aa2709@sussex.ac.uk">aa2709@sussex.ac.uk</a>
+            </li>
+            <li>
+              <strong>ORCID:</strong>
+              <a target="_blank" rel="noopener" href="https://orcid.org/0000-0002-6753-7684">0000‑0002‑6753‑7684</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="interests" class="section">
+      <h2 class="section-title">Research Interests</h2>
+      <div class="grid-2">
+        <div class="card content-card">
+          <p>Blockchain data management and scalability, IoT systems for smart cities, edge computing and 5G security, cloud security, and human‑centred adoption models.</p>
+        </div>
+        <div class="card content-card">
+          <div class="badges">
+            <span class="badge">Blockchain</span>
+            <span class="badge">IoT</span>
+            <span class="badge">Edge/5G</span>
+            <span class="badge">Cloud</span>
+            <span class="badge">TAM</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications" class="section">
+      <h2 class="section-title">
+        Selected Publications
+        <span class="meta">(showing <span id="pub-count">0</span>)</span>
+      </h2>
+      <div class="card search-card">
+        <input id="pub-search" type="search" placeholder="Filter by title or year" aria-label="Search publications">
+      </div>
+      <div id="pub-list" class="pub-list"></div>
+    </section>
+
+    <section id="contact" class="section">
+      <h2 class="section-title">Contact</h2>
+      <div class="grid-2">
+        <div class="card content-card">
+          <form name="contact" method="GET" action="mailto:aa2709@sussex.ac.uk" class="contact-form">
+            <p class="meta">All fields are required</p>
+            <div class="form-group">
+              <label for="name">Full name</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="body">Message</label>
+              <textarea id="body" name="body" rows="5" required></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Send Message</button>
+          </form>
+        </div>
+        <div class="card content-card">
+          <h3>Collaboration</h3>
+          <p>For collaboration and supervision requests, include a short topic summary, datasets, and timeline.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Ahmed Alrehaili. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
