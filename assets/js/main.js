@@ -9,7 +9,7 @@
 // 3. Create a new form and get your form ID
 // 4. Replace 'YOUR_FORM_ID' below with your actual form ID
 const CONTACT_CONFIG = {
-  service: 'formspree', // Options: 'formspree' or 'emailjs'
+  service: 'emailjs', // Options: 'formspree' or 'emailjs'
   formspree: {
     formId: 'YOUR_FORM_ID' // e.g., 'xwkgpzjr'
   },
@@ -19,9 +19,9 @@ const CONTACT_CONFIG = {
   // 3. Create an email template
   // 4. Get your User ID, Service ID, and Template ID
   emailjs: {
-    userId: 'YOUR_USER_ID',
-    serviceId: 'YOUR_SERVICE_ID',
-    templateId: 'YOUR_TEMPLATE_ID'
+    userId: '040f9f3d5a6ffd4c6c139776c9e30b41',
+    serviceId: 'YOUR_SERVICE_ID', // Still needed: Get from EmailJS Email Services
+    templateId: 'YOUR_TEMPLATE_ID' // Still needed: Get from EmailJS Email Templates
   }
 };
 
