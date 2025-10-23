@@ -187,8 +187,19 @@ const initCardAnimations = () => {
 // ========================================
 const loadMetrics = async () => {
   try {
-    const response = await fetch('data/metrics.json');
-    const metrics = await response.json();
+    // Try to fetch from Google Scholar first (automatic)
+    const scholarMetrics = await fetchGoogleScholarMetrics();
+
+    let metrics;
+    if (scholarMetrics) {
+      metrics = scholarMetrics;
+      // Update the text mentions in the about section
+      updateAboutSectionMetrics(metrics);
+    } else {
+      // Fallback to local JSON
+      const response = await fetch('data/metrics.json');
+      metrics = await response.json();
+    }
 
     // Animate numbers
     const animateValue = (element, end) => {
@@ -215,12 +226,64 @@ const loadMetrics = async () => {
     const hindexEl = document.getElementById('hindex');
     const i10El = document.getElementById('i10');
 
-    if (citationsEl) animateValue(citationsEl, metrics.citations);
-    if (hindexEl) animateValue(hindexEl, metrics.h_index);
-    if (i10El) animateValue(i10El, metrics.i10_index);
+    if (citationsEl) animateValue(citationsEl, metrics.citations || metrics.h_index || 0);
+    if (hindexEl) animateValue(hindexEl, metrics.h_index || 0);
+    if (i10El) animateValue(i10El, metrics.i10_index || 0);
 
   } catch (error) {
     console.error('Error loading metrics:', error);
+    // Set default values
+    const citationsEl = document.getElementById('citations');
+    const hindexEl = document.getElementById('hindex');
+    const i10El = document.getElementById('i10');
+
+    if (citationsEl) citationsEl.textContent = '188+';
+    if (hindexEl) hindexEl.textContent = '7';
+    if (i10El) i10El.textContent = '6';
+  }
+};
+
+// Fetch metrics directly from Google Scholar
+const fetchGoogleScholarMetrics = async () => {
+  try {
+    // Google Scholar user ID
+    const scholarId = 'tMmhq2MAAAAJ';
+
+    // Using a CORS proxy to fetch Google Scholar data
+    // Note: This is a basic implementation. For production, consider using a backend API
+    const proxyUrl = 'https://api.allorigins.win/raw?url=';
+    const scholarUrl = `https://scholar.google.com/citations?user=${scholarId}&hl=en`;
+
+    const response = await fetch(proxyUrl + encodeURIComponent(scholarUrl));
+    const html = await response.text();
+
+    // Parse the HTML to extract metrics
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+
+    // Extract citations, h-index, and i10-index from the page
+    const statsTable = doc.querySelectorAll('.gsc_rsb_std');
+
+    if (statsTable && statsTable.length >= 3) {
+      return {
+        citations: parseInt(statsTable[0].textContent) || 188,
+        h_index: parseInt(statsTable[1].textContent) || 7,
+        i10_index: parseInt(statsTable[2].textContent) || 6
+      };
+    }
+
+    return null;
+  } catch (error) {
+    console.log('Could not fetch Google Scholar metrics automatically, using fallback');
+    return null;
+  }
+};
+
+// Update about section with live metrics
+const updateAboutSectionMetrics = (metrics) => {
+  const citationsTextEl = document.getElementById('citations-text');
+  if (citationsTextEl && metrics.citations) {
+    citationsTextEl.textContent = `${metrics.citations}+`;
   }
 };
 
