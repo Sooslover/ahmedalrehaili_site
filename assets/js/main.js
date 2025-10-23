@@ -1,4 +1,31 @@
 // ========================================
+// CONTACT FORM CONFIGURATION
+// ========================================
+// Choose one of the following services and add your credentials:
+
+// OPTION 1: FORMSPREE (Recommended - Easiest Setup)
+// 1. Go to https://formspree.io/
+// 2. Sign up for a free account
+// 3. Create a new form and get your form ID
+// 4. Replace 'YOUR_FORM_ID' below with your actual form ID
+const CONTACT_CONFIG = {
+  service: 'formspree', // Options: 'formspree' or 'emailjs'
+  formspree: {
+    formId: 'mgvnjorq' // Your Formspree form ID
+  },
+  // OPTION 2: EMAILJS (More Features)
+  // 1. Go to https://www.emailjs.com/
+  // 2. Sign up and create an email service
+  // 3. Create an email template
+  // 4. Get your User ID, Service ID, and Template ID
+  emailjs: {
+    userId: '040f9f3d5a6ffd4c6c139776c9e30b41',
+    serviceId: 'YOUR_SERVICE_ID', // Still needed: Get from EmailJS Email Services
+    templateId: 'YOUR_TEMPLATE_ID' // Still needed: Get from EmailJS Email Templates
+  }
+};
+
+// ========================================
 // Theme Management
 // ========================================
 const themeToggle = () => {
@@ -254,6 +281,133 @@ const loadPublications = async () => {
 };
 
 // ========================================
+// Contact Form Submission
+// ========================================
+const initContactForm = () => {
+  const form = document.getElementById('contact-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const btnText = submitBtn.querySelector('.btn-text');
+  const btnLoading = submitBtn.querySelector('.btn-loading');
+  const formStatus = document.getElementById('form-status');
+
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Get form data
+    const formData = {
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      message: document.getElementById('message').value
+    };
+
+    // Show loading state
+    submitBtn.disabled = true;
+    btnText.style.display = 'none';
+    btnLoading.style.display = 'inline-flex';
+    formStatus.className = 'form-status';
+    formStatus.style.display = 'none';
+
+    try {
+      let success = false;
+
+      if (CONTACT_CONFIG.service === 'formspree') {
+        success = await sendViaFormspree(formData);
+      } else if (CONTACT_CONFIG.service === 'emailjs') {
+        success = await sendViaEmailJS(formData);
+      } else {
+        throw new Error('No contact service configured. Please update CONTACT_CONFIG in main.js');
+      }
+
+      if (success) {
+        // Success
+        formStatus.className = 'form-status success';
+        formStatus.textContent = '✓ Message sent successfully! I\'ll get back to you soon.';
+        form.reset();
+      }
+    } catch (error) {
+      // Error
+      formStatus.className = 'form-status error';
+      formStatus.textContent = '✗ Failed to send message. Please try again or email me directly at Ahmed_murayshid@hotmail.com';
+      console.error('Form submission error:', error);
+    } finally {
+      // Reset button state
+      submitBtn.disabled = false;
+      btnText.style.display = 'inline';
+      btnLoading.style.display = 'none';
+    }
+  });
+};
+
+// Send via Formspree
+const sendViaFormspree = async (formData) => {
+  const formId = CONTACT_CONFIG.formspree.formId;
+
+  if (!formId || formId === 'YOUR_FORM_ID') {
+    throw new Error('Formspree form ID not configured');
+  }
+
+  const response = await fetch(`https://formspree.io/f/${formId}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(formData)
+  });
+
+  if (!response.ok) {
+    throw new Error('Formspree submission failed');
+  }
+
+  return true;
+};
+
+// Send via EmailJS
+const sendViaEmailJS = async (formData) => {
+  const { userId, serviceId, templateId } = CONTACT_CONFIG.emailjs;
+
+  if (!userId || userId === 'YOUR_USER_ID' ||
+      !serviceId || serviceId === 'YOUR_SERVICE_ID' ||
+      !templateId || templateId === 'YOUR_TEMPLATE_ID') {
+    throw new Error('EmailJS credentials not configured');
+  }
+
+  // Load EmailJS library if not already loaded
+  if (typeof emailjs === 'undefined') {
+    await loadEmailJSLibrary();
+  }
+
+  // Initialize EmailJS
+  emailjs.init(userId);
+
+  // Send email
+  const response = await emailjs.send(serviceId, templateId, {
+    from_name: formData.name,
+    from_email: formData.email,
+    message: formData.message,
+    to_email: 'Ahmed_murayshid@hotmail.com'
+  });
+
+  if (response.status !== 200) {
+    throw new Error('EmailJS submission failed');
+  }
+
+  return true;
+};
+
+// Dynamically load EmailJS library
+const loadEmailJSLibrary = () => {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
+    script.onload = resolve;
+    script.onerror = reject;
+    document.head.appendChild(script);
+  });
+};
+
+// ========================================
 // Initialize Everything
 // ========================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -269,6 +423,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCardAnimations();
   loadMetrics();
   loadPublications();
+  initContactForm();
 
   // Theme toggle button
   const themeToggleBtn = document.getElementById('theme-toggle');
