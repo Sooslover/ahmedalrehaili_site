@@ -292,8 +292,14 @@ const updateAboutSectionMetrics = (metrics) => {
 // ========================================
 const loadPublications = async () => {
   try {
-    const response = await fetch('data/publications.json');
-    const items = await response.json();
+    // Try to fetch from Google Scholar first
+    let items = await fetchGoogleScholarPublications();
+
+    if (!items || items.length === 0) {
+      // Fallback to local JSON
+      const response = await fetch('data/publications.json');
+      items = await response.json();
+    }
 
     const list = document.getElementById('pub-list');
     const count = document.getElementById('pub-count');
@@ -306,7 +312,11 @@ const loadPublications = async () => {
         <div class="pub">
           <div>
             <div class="title">${pub.title}</div>
-            <div class="meta">${pub.venue || ''} ${pub.venue && pub.year ? '·' : ''} ${pub.year || ''}</div>
+            <div class="meta">
+              ${pub.authors ? `<span class="pub-authors">${pub.authors}</span> · ` : ''}
+              ${pub.venue || ''} ${pub.venue && pub.year ? '·' : ''} ${pub.year || ''}
+              ${pub.citations ? `<span class="pub-citations"> · Cited by ${pub.citations}</span>` : ''}
+            </div>
           </div>
           <div>
             ${pub.link
@@ -318,6 +328,12 @@ const loadPublications = async () => {
       `).join('');
 
       count.textContent = publications.length;
+
+      // Update total count in about section
+      const pubTotalCount = document.getElementById('pub-total-count');
+      if (pubTotalCount) {
+        pubTotalCount.textContent = publications.length;
+      }
 
       // Re-observe new cards for animation
       setTimeout(() => initCardAnimations(), 100);
@@ -332,7 +348,8 @@ const loadPublications = async () => {
         const filtered = items.filter(pub =>
           pub.title.toLowerCase().includes(query) ||
           String(pub.year).includes(query) ||
-          (pub.venue && pub.venue.toLowerCase().includes(query))
+          (pub.venue && pub.venue.toLowerCase().includes(query)) ||
+          (pub.authors && pub.authors.toLowerCase().includes(query))
         );
         renderPublications(filtered);
       });
@@ -340,6 +357,64 @@ const loadPublications = async () => {
 
   } catch (error) {
     console.error('Error loading publications:', error);
+  }
+};
+
+// Fetch all publications from Google Scholar
+const fetchGoogleScholarPublications = async () => {
+  try {
+    const scholarId = 'tMmhq2MAAAAJ';
+
+    // Using CORS proxy
+    const proxyUrl = 'https://api.allorigins.win/raw?url=';
+    const scholarUrl = `https://scholar.google.com/citations?user=${scholarId}&hl=en&cstart=0&pagesize=100`;
+
+    const response = await fetch(proxyUrl + encodeURIComponent(scholarUrl));
+    const html = await response.text();
+
+    // Parse the HTML
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+
+    const publications = [];
+    const rows = doc.querySelectorAll('.gsc_a_tr');
+
+    rows.forEach(row => {
+      try {
+        const titleElement = row.querySelector('.gsc_a_at');
+        const authorsElement = row.querySelector('.gs_gray:nth-of-type(1)');
+        const venueElement = row.querySelector('.gs_gray:nth-of-type(2)');
+        const yearElement = row.querySelector('.gsc_a_y span');
+        const citationsElement = row.querySelector('.gsc_a_c a');
+
+        if (titleElement) {
+          const publication = {
+            title: titleElement.textContent.trim(),
+            link: titleElement.href ? 'https://scholar.google.com' + titleElement.getAttribute('data-href') : null,
+            authors: authorsElement ? authorsElement.textContent.trim() : '',
+            venue: venueElement ? venueElement.textContent.trim() : '',
+            year: yearElement ? yearElement.textContent.trim() : '',
+            citations: citationsElement ? parseInt(citationsElement.textContent) || 0 : 0
+          };
+
+          // Get the actual link
+          if (titleElement.hasAttribute('href')) {
+            publication.link = titleElement.href;
+          }
+
+          publications.push(publication);
+        }
+      } catch (err) {
+        console.log('Error parsing publication row:', err);
+      }
+    });
+
+    console.log(`Successfully fetched ${publications.length} publications from Google Scholar`);
+    return publications.length > 0 ? publications : null;
+
+  } catch (error) {
+    console.log('Could not fetch publications from Google Scholar:', error);
+    return null;
   }
 };
 
