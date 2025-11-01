@@ -187,19 +187,8 @@ const initCardAnimations = () => {
 // ========================================
 const loadMetrics = async () => {
   try {
-    // Try to fetch from Google Scholar first (automatic)
-    const scholarMetrics = await fetchGoogleScholarMetrics();
-
-    let metrics;
-    if (scholarMetrics) {
-      metrics = scholarMetrics;
-      // Update the text mentions in the about section
-      updateAboutSectionMetrics(metrics);
-    } else {
-      // Fallback to local JSON
-      const response = await fetch('data/metrics.json');
-      metrics = await response.json();
-    }
+    const response = await fetch('data/metrics.json');
+    const metrics = await response.json();
 
     // Animate numbers
     const animateValue = (element, end) => {
@@ -226,9 +215,15 @@ const loadMetrics = async () => {
     const hindexEl = document.getElementById('hindex');
     const i10El = document.getElementById('i10');
 
-    if (citationsEl) animateValue(citationsEl, metrics.citations || metrics.h_index || 0);
+    if (citationsEl) animateValue(citationsEl, metrics.citations || 0);
     if (hindexEl) animateValue(hindexEl, metrics.h_index || 0);
     if (i10El) animateValue(i10El, metrics.i10_index || 0);
+
+    // Update about section
+    const citationsTextEl = document.getElementById('citations-text');
+    if (citationsTextEl && metrics.citations) {
+      citationsTextEl.textContent = `${metrics.citations}+`;
+    }
 
   } catch (error) {
     console.error('Error loading metrics:', error);
@@ -237,53 +232,9 @@ const loadMetrics = async () => {
     const hindexEl = document.getElementById('hindex');
     const i10El = document.getElementById('i10');
 
-    if (citationsEl) citationsEl.textContent = '188+';
+    if (citationsEl) citationsEl.textContent = '188';
     if (hindexEl) hindexEl.textContent = '7';
     if (i10El) i10El.textContent = '6';
-  }
-};
-
-// Fetch metrics directly from Google Scholar
-const fetchGoogleScholarMetrics = async () => {
-  try {
-    // Google Scholar user ID
-    const scholarId = 'tMmhq2MAAAAJ';
-
-    // Using a CORS proxy to fetch Google Scholar data
-    // Note: This is a basic implementation. For production, consider using a backend API
-    const proxyUrl = 'https://api.allorigins.win/raw?url=';
-    const scholarUrl = `https://scholar.google.com/citations?user=${scholarId}&hl=en`;
-
-    const response = await fetch(proxyUrl + encodeURIComponent(scholarUrl));
-    const html = await response.text();
-
-    // Parse the HTML to extract metrics
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
-
-    // Extract citations, h-index, and i10-index from the page
-    const statsTable = doc.querySelectorAll('.gsc_rsb_std');
-
-    if (statsTable && statsTable.length >= 3) {
-      return {
-        citations: parseInt(statsTable[0].textContent) || 188,
-        h_index: parseInt(statsTable[1].textContent) || 7,
-        i10_index: parseInt(statsTable[2].textContent) || 6
-      };
-    }
-
-    return null;
-  } catch (error) {
-    console.log('Could not fetch Google Scholar metrics automatically, using fallback');
-    return null;
-  }
-};
-
-// Update about section with live metrics
-const updateAboutSectionMetrics = (metrics) => {
-  const citationsTextEl = document.getElementById('citations-text');
-  if (citationsTextEl && metrics.citations) {
-    citationsTextEl.textContent = `${metrics.citations}+`;
   }
 };
 
@@ -292,14 +243,8 @@ const updateAboutSectionMetrics = (metrics) => {
 // ========================================
 const loadPublications = async () => {
   try {
-    // Try to fetch from Google Scholar first
-    let items = await fetchGoogleScholarPublications();
-
-    if (!items || items.length === 0) {
-      // Fallback to local JSON
-      const response = await fetch('data/publications.json');
-      items = await response.json();
-    }
+    const response = await fetch('data/publications.json');
+    const items = await response.json();
 
     const list = document.getElementById('pub-list');
     const count = document.getElementById('pub-count');
@@ -313,15 +258,18 @@ const loadPublications = async () => {
           <div>
             <div class="title">${pub.title}</div>
             <div class="meta">
-              ${pub.authors ? `<span class="pub-authors">${pub.authors}</span> · ` : ''}
-              ${pub.venue || ''} ${pub.venue && pub.year ? '·' : ''} ${pub.year || ''}
+              ${pub.authors ? `<span class="pub-authors">${pub.authors}</span>` : ''}
+              ${pub.authors && (pub.venue || pub.year) ? ' · ' : ''}
+              ${pub.venue || ''}
+              ${pub.venue && pub.year ? ' · ' : ''}
+              ${pub.year || ''}
               ${pub.citations ? `<span class="pub-citations"> · Cited by ${pub.citations}</span>` : ''}
             </div>
           </div>
           <div>
             ${pub.link
               ? `<a class="btn btn-ghost" target="_blank" rel="noopener" href="${pub.link}">View Paper</a>`
-              : `<a class="btn btn-ghost" target="_blank" rel="noopener" href="https://scholar.google.com/scholar?q=${encodeURIComponent(pub.title)}">Google Scholar</a>`
+              : `<a class="btn btn-ghost" target="_blank" rel="noopener" href="https://scholar.google.com/scholar?q=${encodeURIComponent(pub.title)}">Search on Scholar</a>`
             }
           </div>
         </div>
@@ -357,64 +305,6 @@ const loadPublications = async () => {
 
   } catch (error) {
     console.error('Error loading publications:', error);
-  }
-};
-
-// Fetch all publications from Google Scholar
-const fetchGoogleScholarPublications = async () => {
-  try {
-    const scholarId = 'tMmhq2MAAAAJ';
-
-    // Using CORS proxy
-    const proxyUrl = 'https://api.allorigins.win/raw?url=';
-    const scholarUrl = `https://scholar.google.com/citations?user=${scholarId}&hl=en&cstart=0&pagesize=100`;
-
-    const response = await fetch(proxyUrl + encodeURIComponent(scholarUrl));
-    const html = await response.text();
-
-    // Parse the HTML
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
-
-    const publications = [];
-    const rows = doc.querySelectorAll('.gsc_a_tr');
-
-    rows.forEach(row => {
-      try {
-        const titleElement = row.querySelector('.gsc_a_at');
-        const authorsElement = row.querySelector('.gs_gray:nth-of-type(1)');
-        const venueElement = row.querySelector('.gs_gray:nth-of-type(2)');
-        const yearElement = row.querySelector('.gsc_a_y span');
-        const citationsElement = row.querySelector('.gsc_a_c a');
-
-        if (titleElement) {
-          const publication = {
-            title: titleElement.textContent.trim(),
-            link: titleElement.href ? 'https://scholar.google.com' + titleElement.getAttribute('data-href') : null,
-            authors: authorsElement ? authorsElement.textContent.trim() : '',
-            venue: venueElement ? venueElement.textContent.trim() : '',
-            year: yearElement ? yearElement.textContent.trim() : '',
-            citations: citationsElement ? parseInt(citationsElement.textContent) || 0 : 0
-          };
-
-          // Get the actual link
-          if (titleElement.hasAttribute('href')) {
-            publication.link = titleElement.href;
-          }
-
-          publications.push(publication);
-        }
-      } catch (err) {
-        console.log('Error parsing publication row:', err);
-      }
-    });
-
-    console.log(`Successfully fetched ${publications.length} publications from Google Scholar`);
-    return publications.length > 0 ? publications : null;
-
-  } catch (error) {
-    console.log('Could not fetch publications from Google Scholar:', error);
-    return null;
   }
 };
 
