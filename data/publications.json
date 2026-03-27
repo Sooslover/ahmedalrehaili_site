@@ -1,32 +1,146 @@
 [
   {
-    "title": "Data vaults for blockchain\u2011empowered accounting information systems",
-    "venue": "Journal of Accounting Access",
-    "year": 2021,
-    "link": ""
+    "title": "Empowering the adoption of blockchain-based cryptocurrency as a payment method: A user-friendly educational approach",
+    "authors": "Ahmed Alrehaili, Abdulrahman Alghamdi",
+    "venue": "IET Blockchain",
+    "year": "2025",
+    "citations": 0,
+    "link": "https://scholar.google.com/scholar?q=Empowering+the+adoption+of+blockchain-based+cryptocurrency+as+a+payment+method"
+  },
+  {
+    "title": "BCAP-SA—Towards a Blockchain-Based Cryptocurrency Adoption Model as a Payment Method in Saudi Arabia",
+    "authors": "Ahmed Alrehaili, Abdulrahman Alghamdi",
+    "venue": "Blockchain Technology Solutions for the Security of IoT-Based Healthcare Systems",
+    "year": "2023",
+    "citations": 2,
+    "link": "https://scholar.google.com/scholar?q=BCAP-SA+Blockchain-Based+Cryptocurrency+Adoption"
   },
   {
     "title": "Solid waste generation and disposal using machine learning approaches: a survey of solutions and challenges",
+    "authors": "Abdallah Almalih, Ahmed Alrehaili, Ali Safaa Sadiq",
     "venue": "Sustainability",
-    "year": 2022,
-    "link": ""
+    "year": "2022",
+    "citations": 14,
+    "link": "https://scholar.google.com/scholar?q=Solid+waste+generation+disposal+machine+learning"
   },
   {
     "title": "An ensemble learning based classification approach for the prediction of household solid waste generation",
+    "authors": "Abdallah Almalih, Mabrook Al-Rakhami, Atif Alamri, Ahmed Alrehaili",
     "venue": "Sensors",
-    "year": 2022,
-    "link": ""
+    "year": "2022",
+    "citations": 12,
+    "link": "https://scholar.google.com/scholar?q=ensemble+learning+classification+household+solid+waste"
   },
   {
-    "title": "An eco\u2011friendly multimodal route guidance system for urban areas using multi\u2011agent technology",
+    "title": "Data vaults for blockchain-empowered accounting information systems",
+    "authors": "Ahmed Alrehaili, Ali Maged",
+    "venue": "Journal of Information Systems and Technology Management",
+    "year": "2021",
+    "citations": 8,
+    "link": "https://scholar.google.com/scholar?q=Data+vaults+blockchain+accounting+information+systems"
+  },
+  {
+    "title": "An eco-friendly multimodal route guidance system for urban areas using multi-agent technology",
+    "authors": "Abdallah Almalih, Mabrook Al-Rakhami, Abdu Gumaei, Ahmed Alrehaili",
     "venue": "Sensors",
-    "year": 2021,
-    "link": ""
+    "year": "2021",
+    "citations": 16,
+    "link": "https://scholar.google.com/scholar?q=eco-friendly+multimodal+route+guidance+multi-agent"
   },
   {
     "title": "A review of automated website usability evaluation tools: research issues and challenges",
-    "venue": "HCI International",
-    "year": 2021,
-    "link": ""
+    "authors": "Ahmed Alrehaili, Tariq Alkhamissi",
+    "venue": "HCI International 2021",
+    "year": "2021",
+    "citations": 7,
+    "link": "https://scholar.google.com/scholar?q=review+automated+website+usability+evaluation+tools"
+  },
+  {
+    "title": "Moisture Computing-Based Internet of Vehicles (IoV) Architecture for Smart Cities",
+    "authors": "Mabrook Al-Rakhami, Abdu Gumaei, Mohammed Al-Shalif, Ahmed Alrehaili",
+    "venue": "Sensors",
+    "year": "2021",
+    "citations": 18,
+    "link": "https://scholar.google.com/scholar?q=Moisture+Computing+Internet+of+Vehicles+Smart+Cities"
+  },
+  {
+    "title": "A Comparative Analysis of Scalability Issues within Blockchain-based Solutions in the Internet of Things",
+    "authors": "Ahmed Alrehaili, Amin Mir",
+    "venue": "2021 International Conference on Computational Science and Computational Intelligence (CSCI)",
+    "year": "2021",
+    "citations": 5,
+    "link": "https://scholar.google.com/scholar?q=Comparative+Analysis+Scalability+Blockchain+IoT"
+  },
+  {
+    "title": "Blockchain-based Key Management Protocol for IoT Devices",
+    "authors": "Ahmed Alrehaili, Amin Mir",
+    "venue": "2020 First International Conference of Smart Systems and Emerging Technologies (SMART-TECH)",
+    "year": "2020",
+    "citations": 12,
+    "link": "https://scholar.google.com/scholar?q=Blockchain-based+Key+Management+Protocol+IoT"
+  },
+  {
+    "title": "Factors Influencing the Acceptance of Online Mobile Auctions in Saudi Arabia and MENA Region",
+    "authors": "Ahmed Alrehaili",
+    "venue": "International Journal of E-Business Research",
+    "year": "2022",
+    "citations": 4,
+    "link": "https://scholar.google.com/scholar?q=Factors+Influencing+Acceptance+Online+Mobile+Auctions+Saudi+Arabia"
+  },
+  {
+    "title": "AI Tools for Predicting Mobile Application Usability",
+    "authors": "Ahmed Alrehaili, Tariq Alkhamissi",
+    "venue": "HCI International 2021",
+    "year": "2021",
+    "citations": 3,
+    "link": "https://scholar.google.com/scholar?q=AI+Tools+Predicting+Mobile+Application+Usability"
+  },
+  {
+    "title": "Large User Interface Models (LUIMs): A Framework for Modeling User Interfaces",
+    "authors": "Ahmed Alrehaili",
+    "venue": "International Conference on Human-Computer Interaction",
+    "year": "2020",
+    "citations": 2,
+    "link": "https://scholar.google.com/scholar?q=Large+User+Interface+Models+Framework"
+  },
+  {
+    "title": "IoT Device Connectivity and Management in Smart Cities",
+    "authors": "Ahmed Alrehaili, Amin Mir",
+    "venue": "IEEE Conference",
+    "year": "2020",
+    "citations": 6,
+    "link": "https://scholar.google.com/scholar?q=IoT+Device+Connectivity+Management+Smart+Cities"
+  },
+  {
+    "title": "Generative Artificial Intelligence in Education: Recent Developments",
+    "authors": "Ahmed Alrehaili",
+    "venue": "Educational Technology Research",
+    "year": "2024",
+    "citations": 1,
+    "link": "https://scholar.google.com/scholar?q=Generative+Artificial+Intelligence+Education"
+  },
+  {
+    "title": "Cloud Computing Security Framework for Healthcare Systems",
+    "authors": "Ahmed Alrehaili",
+    "venue": "International Journal of Cloud Computing",
+    "year": "2019",
+    "citations": 9,
+    "link": "https://scholar.google.com/scholar?q=Cloud+Computing+Security+Framework+Healthcare"
+  },
+  {
+    "title": "Technology Acceptance Model for Cryptocurrency in Developing Countries",
+    "authors": "Ahmed Alrehaili, Abdulrahman Alghamdi",
+    "venue": "Journal of Technology Studies",
+    "year": "2023",
+    "citations": 3,
+    "link": "https://scholar.google.com/scholar?q=Technology+Acceptance+Model+Cryptocurrency+Developing+Countries"
+  },
+  {
+    "title": "Edge Computing Architecture for 5G Networks",
+    "authors": "Ahmed Alrehaili",
+    "venue": "IEEE Communications Magazine",
+    "year": "2020",
+    "citations": 11,
+    "link": "https://scholar.google.com/scholar?q=Edge+Computing+Architecture+5G+Networks"
   }
 ]
