@@ -314,11 +314,14 @@ const loadPublications = async () => {
 const initContactForm = () => {
   const form = document.getElementById('contact-form');
   const submitBtn = document.getElementById('submit-btn');
-  const btnText = submitBtn.querySelector('.btn-text');
-  const btnLoading = submitBtn.querySelector('.btn-loading');
   const formStatus = document.getElementById('form-status');
 
-  if (!form) return;
+  if (!form || !submitBtn || !formStatus) return;
+
+  const btnText = submitBtn.querySelector('.btn-text');
+  const btnLoading = submitBtn.querySelector('.btn-loading');
+
+  if (!btnText || !btnLoading) return;
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();

@@ -580,7 +580,15 @@ a:hover {
 
 .contact-list li {
   padding: 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   color: var(--text-secondary);
+}
+
+.contact-list svg {
+  color: var(--primary);
+  flex-shrink: 0;
 }
 
 .contact-list strong {
@@ -945,22 +953,11 @@ a:hover {
   font-weight: 600;
 }
 
-.contact-list li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.contact-list svg {
-  color: var(--primary);
-  flex-shrink: 0;
-}
-
 /* Research Section */
 .section-alt {
   background: var(--surface);
-  padding: 60px 24px;
-  margin: 0 -24px;
+  border-radius: 24px;
+  padding: 48px 32px;
 }
 
 .research-areas {
@@ -1098,8 +1095,8 @@ a:hover {
   }
 
   .section-alt {
-    margin: 0 -16px;
-    padding: 40px 16px;
+    padding: 32px 16px;
+    border-radius: 16px;
   }
 }
 
