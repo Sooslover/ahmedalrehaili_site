@@ -2,36 +2,36 @@
    CSS Variables & Theme
    ======================================== */
 :root {
-  /* Light theme colors */
-  --bg: #ffffff;
-  --surface: #f8fafc;
+  /* Light theme colors - Green & White Mix */
+  --bg: #f0fdf4;
+  --surface: #dcfce7;
   --card: #ffffff;
   --text: #0f172a;
   --text-secondary: #475569;
   --muted: #64748b;
-  --border: #e2e8f0;
-  --primary: #2563eb;
-  --primary-hover: #1d4ed8;
-  --accent: #0ea5e9;
+  --border: #bbf7d0;
+  --primary: #16a34a;
+  --primary-hover: #15803d;
+  --accent: #22c55e;
   --success: #10b981;
-  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.08);
-  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.1);
-  --shadow-lg: 0 10px 40px rgba(15, 23, 42, 0.12);
-  --shadow-xl: 0 20px 60px rgba(15, 23, 42, 0.15);
+  --shadow-sm: 0 1px 3px rgba(22, 163, 74, 0.08);
+  --shadow-md: 0 4px 12px rgba(22, 163, 74, 0.1);
+  --shadow-lg: 0 10px 40px rgba(22, 163, 74, 0.12);
+  --shadow-xl: 0 20px 60px rgba(22, 163, 74, 0.15);
 }
 
 :root.dark {
-  /* Dark theme colors */
-  --bg: #0b1120;
-  --surface: #0f172a;
-  --card: #1e293b;
-  --text: #f1f5f9;
-  --text-secondary: #cbd5e1;
-  --muted: #94a3b8;
-  --border: #334155;
-  --primary: #60a5fa;
-  --primary-hover: #3b82f6;
-  --accent: #22d3ee;
+  /* Dark theme colors - Dark Green & White Mix */
+  --bg: #052e16;
+  --surface: #14532d;
+  --card: #166534;
+  --text: #f0fdf4;
+  --text-secondary: #d1fae5;
+  --muted: #a7f3d0;
+  --border: #15803d;
+  --primary: #4ade80;
+  --primary-hover: #22c55e;
+  --accent: #86efac;
   --success: #34d399;
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
@@ -97,14 +97,14 @@ a:hover {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(240, 253, 244, 0.8);
   backdrop-filter: saturate(180%) blur(10px);
   border-bottom: 1px solid var(--border);
   transition: all 0.3s ease;
 }
 
 :root.dark .header {
-  background: rgba(15, 23, 42, 0.8);
+  background: rgba(5, 46, 22, 0.8);
 }
 
 .nav {
