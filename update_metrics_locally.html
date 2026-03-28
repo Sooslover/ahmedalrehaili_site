@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update Scholar Metrics</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1 { color: #333; margin-top: 0; }
+    .instructions {
+      background: #e3f2fd;
+      padding: 15px;
+      border-radius: 5px;
+      margin: 20px 0;
+    }
+    .form-group {
+      margin: 15px 0;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+      color: #555;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    button {
+      background: #525252;
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover { background: #404040; }
+    .output {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f5f5f5;
+      border-radius: 5px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      display: none;
+    }
+    .output.show { display: block; }
+    .success { color: #059669; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📊 Update Google Scholar Metrics</h1>
+
+    <div class="instructions">
+      <strong>Instructions:</strong>
+      <ol>
+        <li>Open your <a href="https://scholar.google.com/citations?user=tMmhq2MAAAAJ" target="_blank">Google Scholar profile</a></li>
+        <li>Enter your current metrics below</li>
+        <li>Click "Generate JSON"</li>
+        <li>Copy the JSON and save it to <code>data/metrics.json</code></li>
+      </ol>
+    </div>
+
+    <form id="metricsForm">
+      <div class="form-group">
+        <label for="citations">Citations:</label>
+        <input type="number" id="citations" required min="0" placeholder="e.g., 188">
+      </div>
+
+      <div class="form-group">
+        <label for="hindex">h-index:</label>
+        <input type="number" id="hindex" required min="0" placeholder="e.g., 7">
+      </div>
+
+      <div class="form-group">
+        <label for="i10index">i10-index:</label>
+        <input type="number" id="i10index" required min="0" placeholder="e.g., 6">
+      </div>
+
+      <button type="submit">Generate JSON</button>
+    </form>
+
+    <div id="output" class="output"></div>
+  </div>
+
+  <script>
+    document.getElementById('metricsForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const metrics = {
+        citations: parseInt(document.getElementById('citations').value),
+        h_index: parseInt(document.getElementById('hindex').value),
+        i10_index: parseInt(document.getElementById('i10index').value)
+      };
+
+      const json = JSON.stringify(metrics, null, 2);
+      const output = document.getElementById('output');
+
+      output.innerHTML = `<span class="success">✓ JSON Generated Successfully!</span>\n\nCopy this to data/metrics.json:\n\n${json}\n\n<button onclick="navigator.clipboard.writeText('${json.replace(/'/g, "\\'")}').then(() => alert('Copied to clipboard!'))">Copy to Clipboard</button>`;
+      output.classList.add('show');
+    });
+  </script>
+</body>
+</html>
