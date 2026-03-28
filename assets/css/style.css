@@ -2,41 +2,41 @@
    CSS Variables & Theme
    ======================================== */
 :root {
-  /* Light theme colors - Green & White Mix */
-  --bg: #f0fdf4;
-  --surface: #dcfce7;
+  /* Light theme colors - Darker Green & White Mix */
+  --bg: #d1fae5;
+  --surface: #a7f3d0;
   --card: #ffffff;
-  --text: #0f172a;
-  --text-secondary: #475569;
-  --muted: #64748b;
-  --border: #bbf7d0;
-  --primary: #16a34a;
-  --primary-hover: #15803d;
-  --accent: #22c55e;
-  --success: #10b981;
-  --shadow-sm: 0 1px 3px rgba(22, 163, 74, 0.08);
-  --shadow-md: 0 4px 12px rgba(22, 163, 74, 0.1);
-  --shadow-lg: 0 10px 40px rgba(22, 163, 74, 0.12);
-  --shadow-xl: 0 20px 60px rgba(22, 163, 74, 0.15);
+  --text: #052e16;
+  --text-secondary: #14532d;
+  --muted: #166534;
+  --border: #6ee7b7;
+  --primary: #047857;
+  --primary-hover: #065f46;
+  --accent: #10b981;
+  --success: #059669;
+  --shadow-sm: 0 1px 3px rgba(4, 120, 87, 0.12);
+  --shadow-md: 0 4px 12px rgba(4, 120, 87, 0.15);
+  --shadow-lg: 0 10px 40px rgba(4, 120, 87, 0.18);
+  --shadow-xl: 0 20px 60px rgba(4, 120, 87, 0.2);
 }
 
 :root.dark {
-  /* Dark theme colors - Dark Green & White Mix */
-  --bg: #052e16;
-  --surface: #14532d;
-  --card: #166534;
-  --text: #f0fdf4;
-  --text-secondary: #d1fae5;
-  --muted: #a7f3d0;
-  --border: #15803d;
-  --primary: #4ade80;
-  --primary-hover: #22c55e;
-  --accent: #86efac;
-  --success: #34d399;
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.5);
-  --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.6);
+  /* Dark theme colors - Even Darker Green */
+  --bg: #021810;
+  --surface: #052e16;
+  --card: #064e3b;
+  --text: #d1fae5;
+  --text-secondary: #a7f3d0;
+  --muted: #6ee7b7;
+  --border: #065f46;
+  --primary: #34d399;
+  --primary-hover: #10b981;
+  --accent: #6ee7b7;
+  --success: #22c55e;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.7);
+  --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.8);
 }
 
 /* ========================================
@@ -97,14 +97,14 @@ a:hover {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(240, 253, 244, 0.8);
+  background: rgba(209, 250, 229, 0.9);
   backdrop-filter: saturate(180%) blur(10px);
   border-bottom: 1px solid var(--border);
   transition: all 0.3s ease;
 }
 
 :root.dark .header {
-  background: rgba(5, 46, 22, 0.8);
+  background: rgba(2, 24, 16, 0.9);
 }
 
 .nav {
