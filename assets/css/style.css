@@ -57,11 +57,12 @@ html {
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
-  font-size: 16px;
-  line-height: 1.7;
+  font-size: 17px;
+  line-height: 1.8;
   background: var(--bg);
   color: var(--text);
   transition: background 0.3s ease, color 0.3s ease;
+  letter-spacing: -0.01em;
 }
 
 a {
@@ -242,33 +243,35 @@ a:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 12px 24px;
-  border-radius: 12px;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: 14px;
   font-weight: 600;
   font-size: 15px;
   border: 2px solid transparent;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
+  letter-spacing: -0.01em;
 }
 
 .btn-primary {
   background: var(--primary);
   color: #ffffff;
   border-color: var(--primary);
+  box-shadow: var(--shadow-sm);
 }
 
 .btn-primary:hover {
   background: var(--primary-hover);
   border-color: var(--primary-hover);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
   text-decoration: none;
 }
 
 .btn-ghost {
-  background: transparent;
+  background: var(--card);
   color: var(--primary);
   border-color: var(--border);
 }
@@ -276,6 +279,8 @@ a:hover {
 .btn-ghost:hover {
   background: var(--surface);
   border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
   text-decoration: none;
 }
 
@@ -322,8 +327,23 @@ a:hover {
    Hero Section
    ======================================== */
 .hero {
-  padding: 80px 0;
+  padding: 100px 0;
   background: linear-gradient(180deg, var(--surface) 0%, transparent 100%);
+  position: relative;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(circle at 20% 50%, var(--primary) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, var(--accent) 0%, transparent 50%);
+  opacity: 0.03;
+  pointer-events: none;
 }
 
 .grid-hero {
@@ -334,11 +354,12 @@ a:hover {
 }
 
 .hero-title {
-  font-size: 48px;
+  font-size: 52px;
   font-weight: 800;
-  line-height: 1.2;
-  margin: 0 0 16px;
+  line-height: 1.15;
+  margin: 0 0 20px;
   color: var(--text);
+  letter-spacing: -0.03em;
 }
 
 .subtitle {
@@ -436,15 +457,16 @@ a:hover {
 .card {
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 24px;
+  border-radius: 20px;
+  padding: 28px;
   box-shadow: var(--shadow-sm);
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+  border-color: var(--muted);
 }
 
 .profile-card {
@@ -456,13 +478,22 @@ a:hover {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 16px;
+  border-radius: 20px;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+}
+
+.profile-card:hover .profile-image {
+  box-shadow: var(--shadow-xl);
+  transform: scale(1.02);
 }
 
 .content-card h3 {
-  margin: 0 0 12px;
-  font-size: 20px;
+  margin: 0 0 16px;
+  font-size: 22px;
+  font-weight: 700;
   color: var(--text);
+  letter-spacing: -0.01em;
 }
 
 .content-card p {
@@ -488,22 +519,41 @@ a:hover {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 20px 16px;
-  gap: 8px;
+  padding: 24px 18px;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.kpi::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.kpi:hover::before {
+  opacity: 1;
 }
 
 .kpi .num {
-  font-size: 36px;
+  font-size: 40px;
   font-weight: 800;
   color: var(--primary);
+  letter-spacing: -0.02em;
 }
 
 .kpi .label {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--muted);
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
 }
 
 /* ========================================
@@ -542,14 +592,28 @@ a:hover {
    Sections
    ======================================== */
 .section {
-  padding: 60px 0;
+  padding: 80px 0;
 }
 
 .section-title {
-  font-size: 32px;
-  font-weight: 700;
-  margin: 0 0 32px;
+  font-size: 36px;
+  font-weight: 800;
+  margin: 0 0 40px;
   color: var(--text);
+  letter-spacing: -0.02em;
+  position: relative;
+  padding-bottom: 16px;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: 2px;
 }
 
 .section-title .meta {
@@ -601,31 +665,52 @@ a:hover {
    ======================================== */
 .pub-list {
   display: grid;
-  gap: 16px;
+  gap: 20px;
 }
 
 .pub {
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: 16px;
+  gap: 20px;
   align-items: center;
-  padding: 20px;
+  padding: 24px;
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 16px;
   background: var(--card);
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.pub::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--primary), var(--accent));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.pub:hover::before {
+  opacity: 1;
 }
 
 .pub:hover {
   border-color: var(--primary);
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
 }
 
 .pub .title {
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 16px;
   color: var(--text);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
 }
 
 .pub .meta {
@@ -683,44 +768,53 @@ a:hover {
 .form-group input,
 .form-group textarea {
   width: 100%;
-  padding: 12px 16px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
+  padding: 14px 18px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
   background: var(--surface);
   color: var(--text);
   font-family: inherit;
   font-size: 15px;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  background: var(--card);
+  box-shadow: 0 0 0 4px rgba(82, 82, 82, 0.08);
+  transform: translateY(-1px);
 }
 
 .form-group textarea {
   resize: vertical;
-  min-height: 120px;
+  min-height: 140px;
+  line-height: 1.7;
 }
 
 #pub-search {
   width: 100%;
-  padding: 12px 16px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: var(--surface);
+  padding: 14px 18px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
   color: var(--text);
   font-family: inherit;
   font-size: 15px;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 #pub-search:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  box-shadow: 0 0 0 4px rgba(82, 82, 82, 0.08);
+  transform: translateY(-1px);
+}
+
+#pub-search::placeholder {
+  color: var(--muted);
+  opacity: 0.7;
 }
 
 .meta {
@@ -814,6 +908,22 @@ a:hover {
 }
 
 /* ========================================
+   Typography
+   ======================================== */
+.lead {
+  font-size: 19px;
+  line-height: 1.8;
+  color: var(--text);
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.highlight {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* ========================================
    Utility Classes
    ======================================== */
 .text-center {
@@ -854,10 +964,12 @@ a:hover {
 
 /* Hero Enhancements */
 .hero-subtitle {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 600;
   color: var(--text-secondary);
-  margin-bottom: 24px;
+  margin-bottom: 28px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
 }
 
 .affiliations {
@@ -967,16 +1079,21 @@ a:hover {
 }
 
 .research-card {
-  padding: 28px;
+  padding: 32px;
   text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.research-card:hover {
+  transform: translateY(-6px);
 }
 
 .research-icon {
-  width: 64px;
-  height: 64px;
-  margin: 0 auto 20px;
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 24px;
   background: linear-gradient(135deg, var(--primary), var(--accent));
-  border-radius: 16px;
+  border-radius: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -984,15 +1101,18 @@ a:hover {
 }
 
 .research-card h3 {
-  font-size: 20px;
-  margin: 0 0 12px;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 16px;
   color: var(--text);
+  letter-spacing: -0.01em;
 }
 
 .research-card p {
   color: var(--text-secondary);
-  line-height: 1.7;
+  line-height: 1.8;
   margin: 0;
+  font-size: 15px;
 }
 
 /* Profile Links */
