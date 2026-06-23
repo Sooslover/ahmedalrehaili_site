@@ -2,49 +2,49 @@
    CSS Variables & Theme
    ======================================== */
 :root {
-  /* Light theme colors - Inspiring Professional */
-  --bg: #fafbfc;
-  --surface: #f3f4f6;
+  /* Light theme - Bold Navy Professional */
+  --bg: #f8fafc;
+  --surface: #f1f5f9;
   --card: #ffffff;
-  --text: #111827;
-  --text-secondary: #4b5563;
-  --muted: #6b7280;
-  --border: #e5e7eb;
-  --primary: #3b82f6;
-  --primary-hover: #2563eb;
-  --accent: #8b5cf6;
+  --text: #0f172a;
+  --text-secondary: #334155;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --primary: #1e3a8a;
+  --primary-hover: #1e40af;
+  --accent: #0ea5e9;
   --success: #10b981;
-  --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.12);
-  --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.15);
-  --shadow-colored: 0 10px 40px rgba(59, 130, 246, 0.15);
+  --gradient-1: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  --gradient-2: linear-gradient(135deg, #0f172a 0%, #1e40af 100%);
+  --gradient-3: linear-gradient(135deg, #1e40af 0%, #0ea5e9 100%);
+  --shadow-sm: 0 1px 3px rgba(30, 58, 138, 0.1);
+  --shadow-md: 0 4px 12px rgba(30, 58, 138, 0.15);
+  --shadow-lg: 0 10px 40px rgba(30, 58, 138, 0.2);
+  --shadow-xl: 0 20px 60px rgba(30, 58, 138, 0.25);
+  --shadow-colored: 0 10px 40px rgba(30, 58, 138, 0.2);
 }
 
 :root.dark {
-  /* Dark theme colors - Deep with Vibrant Accents */
-  --bg: #0f1419;
-  --surface: #1a1f2e;
-  --card: #252b3b;
-  --text: #f9fafb;
-  --text-secondary: #d1d5db;
-  --muted: #9ca3af;
-  --border: #374151;
-  --primary: #60a5fa;
-  --primary-hover: #3b82f6;
-  --accent: #a78bfa;
+  /* Dark theme - Deep Navy with Bright Accents */
+  --bg: #0a0f1e;
+  --surface: #0f172a;
+  --card: #1e293b;
+  --text: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --muted: #94a3b8;
+  --border: #334155;
+  --primary: #3b82f6;
+  --primary-hover: #60a5fa;
+  --accent: #0ea5e9;
   --success: #34d399;
-  --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --gradient-1: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  --gradient-2: linear-gradient(135deg, #0f172a 0%, #1e40af 100%);
+  --gradient-3: linear-gradient(135deg, #1e40af 0%, #0ea5e9 100%);
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.6);
   --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.7);
   --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.8);
-  --shadow-colored: 0 10px 40px rgba(96, 165, 250, 0.2);
+  --shadow-colored: 0 10px 40px rgba(59, 130, 246, 0.3);
 }
 
 /* ========================================
