@@ -72,4 +72,4 @@ Edit `index.html` to update bio, education, research areas, and contact informat
 
 ## 📄 License
 
-© 2024 Ahmed Alrehaili. All rights reserved.
+© 2025 Ahmed Alrehaili. All rights reserved.
