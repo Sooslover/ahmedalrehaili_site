@@ -280,16 +280,16 @@ a:hover {
 }
 
 .btn-ghost {
-  background: var(--card);
-  color: var(--primary);
-  border-color: var(--border);
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
 }
 
 .btn-ghost:hover {
-  background: var(--surface);
-  border-color: var(--primary);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.25);
   text-decoration: none;
 }
 
