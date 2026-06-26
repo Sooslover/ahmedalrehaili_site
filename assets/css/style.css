@@ -516,20 +516,22 @@ a:hover {
 }
 
 .profile-image {
-  width: 100%;
-  height: auto;
+  width: 200px;
+  height: 200px;
   display: block;
-  border-radius: 16px;
+  border-radius: 50%;
   box-shadow: var(--shadow-md);
   transition: all 0.3s ease;
   position: relative;
   z-index: 1;
   background: var(--card);
+  object-fit: cover;
+  margin: 0 auto;
 }
 
 .profile-card:hover .profile-image {
   box-shadow: var(--shadow-xl);
-  transform: scale(1.02);
+  transform: scale(1.05);
 }
 
 .content-card h3 {
