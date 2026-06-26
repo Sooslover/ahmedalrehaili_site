@@ -64,8 +64,8 @@ html {
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
-  font-size: 16px;
-  line-height: 1.7;
+  font-size: 15px;
+  line-height: 1.6;
   background: var(--bg);
   color: var(--text);
   transition: background 0.3s ease, color 0.3s ease;
@@ -336,7 +336,7 @@ a:hover {
    Hero Section
    ======================================== */
 .hero {
-  padding: 140px 0 100px;
+  padding: 60px 0 40px;
   background: var(--bg);
   position: relative;
   overflow: hidden;
@@ -370,10 +370,10 @@ a:hover {
 }
 
 .hero-title {
-  font-size: 56px;
+  font-size: 40px;
   font-weight: 700;
   line-height: 1.1;
-  margin: 0 0 24px;
+  margin: 0 0 16px;
   color: var(--text);
   letter-spacing: -0.04em;
   font-feature-settings: 'ss01' on, 'cv01' on;
@@ -476,8 +476,8 @@ a:hover {
 .card {
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 32px;
+  border-radius: 12px;
+  padding: 20px;
   box-shadow: var(--shadow-sm);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -644,18 +644,18 @@ a:hover {
    Sections
    ======================================== */
 .section {
-  padding: 96px 0;
+  padding: 48px 0;
   position: relative;
 }
 
 .section-title {
-  font-size: 42px;
+  font-size: 32px;
   font-weight: 600;
-  margin: 0 0 48px;
+  margin: 0 0 32px;
   color: var(--text);
   letter-spacing: -0.03em;
   position: relative;
-  padding-bottom: 20px;
+  padding-bottom: 12px;
 }
 
 .section-title::after {
