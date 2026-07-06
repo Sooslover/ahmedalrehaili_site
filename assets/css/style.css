@@ -25,26 +25,26 @@
 }
 
 :root.dark {
-  /* Dark theme - Elegant Deep Navy */
-  --bg: #0a0a0a;
-  --surface: #0f1419;
-  --card: #1a1f2e;
-  --text: #fafafa;
-  --text-secondary: #d4d4d4;
-  --muted: #a3a3a3;
-  --border: #262626;
-  --primary: #60a5fa;
-  --primary-hover: #3b82f6;
-  --accent: #38bdf8;
+  /* Dark theme - Deep Purple Night (novapay-inspired) */
+  --bg: #0c0a16;
+  --surface: #17142a;
+  --card: #1a1630;
+  --text: #f2f0f8;
+  --text-secondary: #d9d5e8;
+  --muted: #cabfe6;
+  --border: #2a2347;
+  --primary: #a483f5;
+  --primary-hover: #7f52ef;
+  --accent: #7442e9;
   --success: #34d399;
-  --gradient-1: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-  --gradient-2: linear-gradient(135deg, #0f172a 0%, #1e40af 100%);
-  --gradient-3: linear-gradient(135deg, #1e40af 0%, #0284c7 100%);
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.8);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.9);
-  --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.95);
-  --shadow-xl: 0 24px 48px rgba(0, 0, 0, 1);
-  --shadow-colored: 0 12px 32px rgba(59, 130, 246, 0.25);
+  --gradient-1: linear-gradient(135deg, #7442e9 0%, #a483f5 100%);
+  --gradient-2: linear-gradient(135deg, #16112b 0%, #504081 100%);
+  --gradient-3: linear-gradient(135deg, #504081 0%, #7f52ef 100%);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.6);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.7);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.8);
+  --shadow-xl: 0 30px 80px rgba(0, 0, 0, 0.6);
+  --shadow-colored: 0 12px 32px rgba(127, 82, 239, 0.3);
 }
 
 /* ========================================
@@ -108,15 +108,17 @@ a:hover {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(245, 245, 245, 0.9);
-  backdrop-filter: saturate(180%) blur(10px);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: saturate(180%) blur(18px);
+  -webkit-backdrop-filter: saturate(180%) blur(18px);
   border-bottom: 1px solid var(--border);
   transition: all 0.3s ease;
 }
 
 :root.dark .header {
-  background: rgba(10, 10, 10, 0.9);
+  background: rgba(12, 10, 22, 0.85);
 }
+
 
 .nav {
   display: flex;
@@ -163,18 +165,25 @@ a:hover {
 .links a {
   color: var(--text-secondary);
   font-weight: 500;
-  padding: 8px 4px;
-  transition: color 0.2s ease;
+  font-size: 14px;
+  padding: 8px 14px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .links a:hover {
   color: var(--primary);
+  border-color: var(--border);
+  background: var(--surface);
   text-decoration: none;
 }
 
 .links a.active {
   color: var(--primary);
   font-weight: 600;
+  border-color: var(--border);
+  background: var(--surface);
 }
 
 /* Mobile menu toggle */
@@ -255,7 +264,7 @@ a:hover {
   justify-content: center;
   gap: 8px;
   padding: 12px 24px;
-  border-radius: 10px;
+  border-radius: 999px;
   font-weight: 500;
   font-size: 15px;
   border: 1px solid transparent;
@@ -299,7 +308,7 @@ a:hover {
   justify-content: center;
   padding: 10px 12px;
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 999px;
   background: var(--card);
   cursor: pointer;
   transition: all 0.2s ease;
@@ -340,6 +349,83 @@ a:hover {
   background: var(--bg);
   position: relative;
   overflow: hidden;
+}
+
+/* Ghost background text (novapay-style) */
+.hero-ghost {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  font-size: 110px;
+  font-weight: 900;
+  line-height: 0.78;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--text);
+  opacity: 0.04;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+:root.dark .hero-ghost {
+  color: #16112b;
+  opacity: 0.55;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Status pill with dot (badge-pill style) */
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.pill-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 8px var(--primary);
+  animation: dot-pulse 2s ease-in-out infinite;
+}
+
+@keyframes dot-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+@media (max-width: 968px) {
+  .hero-ghost {
+    font-size: 68px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-ghost {
+    font-size: 48px;
+    top: -6px;
+    left: -6px;
+  }
+
+  .hero-pill {
+    font-size: 10px;
+    padding: 6px 12px;
+  }
 }
 
 .hero::before {
@@ -455,8 +541,8 @@ a:hover {
   border: 1px solid var(--border);
   background: var(--surface);
   color: var(--text);
-  border-radius: 8px;
-  font-size: 14px;
+  border-radius: 999px;
+  font-size: 13px;
   font-weight: 500;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   letter-spacing: -0.01em;
@@ -488,31 +574,22 @@ a:hover {
   border-color: var(--primary);
 }
 
+/* Glassmorphism profile card (novapay hero-card style) */
 .profile-card {
-  padding: 0;
-  overflow: hidden;
-  background: var(--gradient-1);
-  padding: 4px;
+  padding: 20px;
   position: relative;
+  background: linear-gradient(120deg, rgba(30, 58, 138, 0.08), rgba(30, 58, 138, 0.04));
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.profile-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  padding: 3px;
-  background: var(--gradient-1);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0.6;
-  transition: opacity 0.3s ease;
-}
-
-.profile-card:hover::before {
-  opacity: 1;
+:root.dark .profile-card {
+  background: linear-gradient(120deg, rgba(203, 191, 255, 0.11), rgba(203, 191, 255, 0.06));
+  border-color: rgba(203, 191, 255, 0.15);
 }
 
 .profile-image {
@@ -565,10 +642,18 @@ a:hover {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 24px 18px;
-  gap: 10px;
+  padding: 20px 14px;
+  gap: 8px;
   position: relative;
   overflow: hidden;
+  border-radius: 24px;
+}
+
+:root.dark .kpi {
+  background: rgba(33, 24, 62, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-color: rgba(203, 191, 255, 0.12);
 }
 
 .kpi::before {
@@ -850,9 +935,9 @@ a:hover {
 
 #pub-search {
   width: 100%;
-  padding: 14px 18px;
-  border: 2px solid var(--border);
-  border-radius: 12px;
+  padding: 14px 20px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
   background: var(--card);
   color: var(--text);
   font-family: inherit;
