@@ -409,6 +409,219 @@ a:hover {
   50% { opacity: 0.45; }
 }
 
+/* ========================================
+   Publication Spotlight (flip card)
+   ======================================== */
+.pub-spotlight {
+  position: relative;
+  margin-bottom: 28px;
+  padding: 8px 0 0;
+}
+
+.spotlight-ghost {
+  position: absolute;
+  top: -34px;
+  right: -8px;
+  font-size: 150px;
+  font-weight: 900;
+  line-height: 0.72;
+  letter-spacing: -0.04em;
+  color: var(--text);
+  opacity: 0.05;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  transition: opacity 0.4s ease;
+}
+
+:root.dark .spotlight-ghost {
+  color: #16112b;
+  opacity: 0.75;
+}
+
+.spotlight-pill {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 14px;
+}
+
+.flip-stage {
+  position: relative;
+  z-index: 1;
+  perspective: 1400px;
+  min-height: 250px;
+}
+
+.flip-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 250px;
+  transform-style: preserve-3d;
+  transition: transform 0.9s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+.flip-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  padding: 28px 32px;
+  border-radius: 24px;
+  border: 1px solid var(--border);
+  background: linear-gradient(120deg, rgba(30, 58, 138, 0.07), rgba(30, 58, 138, 0.03));
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+:root.dark .flip-face {
+  background: linear-gradient(120deg, rgba(203, 191, 255, 0.11), rgba(203, 191, 255, 0.05));
+  border-color: rgba(203, 191, 255, 0.14);
+}
+
+.flip-back {
+  transform: rotateY(180deg);
+}
+
+.spotlight-title {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin: 0;
+}
+
+:root.dark .spotlight-title {
+  color: #a483f5;
+}
+
+.spotlight-authors {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-style: italic;
+  margin: 0;
+}
+
+/* Overlapping pill segments (countdown-bar style) */
+.spotlight-segments {
+  display: flex;
+  align-items: center;
+}
+
+.spotlight-segment {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 34px;
+  padding: 0 16px;
+  border-radius: 9999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  background: rgba(30, 58, 138, 0.08);
+}
+
+.spotlight-segment + .spotlight-segment {
+  margin-left: -14px;
+  padding-left: 22px;
+}
+
+.spotlight-segment:nth-child(1) { z-index: 1; }
+.spotlight-segment:nth-child(2) { z-index: 2; background: rgba(30, 58, 138, 0.14); }
+.spotlight-segment:nth-child(3) { z-index: 3; background: rgba(30, 58, 138, 0.2); }
+.spotlight-segment:nth-child(4) { z-index: 4; background: rgba(30, 58, 138, 0.26); }
+
+:root.dark .spotlight-segment { background: rgba(33, 24, 62, 0.72); color: #f4f1fb; }
+:root.dark .spotlight-segment:nth-child(2) { background: rgba(38, 28, 72, 0.78); }
+:root.dark .spotlight-segment:nth-child(3) { background: rgba(44, 33, 84, 0.84); }
+:root.dark .spotlight-segment:nth-child(4) { background: rgba(50, 38, 96, 0.9); }
+
+.spotlight-segment .seg-label {
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.spotlight-segment svg {
+  flex-shrink: 0;
+}
+
+.spotlight-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.spotlight-actions .btn {
+  padding: 9px 20px;
+  font-size: 13px;
+}
+
+/* Dot indicators */
+.spotlight-dots {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.spotlight-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: var(--border);
+  transition: all 0.3s ease;
+}
+
+.spotlight-dot.active {
+  background: var(--primary);
+  box-shadow: 0 0 8px var(--primary);
+  transform: scale(1.25);
+}
+
+@media (max-width: 640px) {
+  .flip-stage,
+  .flip-card {
+    min-height: 320px;
+  }
+
+  .flip-face {
+    padding: 20px;
+  }
+
+  .spotlight-title {
+    font-size: 18px;
+  }
+
+  .spotlight-ghost {
+    font-size: 90px;
+    top: -20px;
+  }
+
+  .spotlight-segments {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .spotlight-segment + .spotlight-segment {
+    margin-left: 0;
+    padding-left: 16px;
+  }
+}
+
 @media (max-width: 968px) {
   .hero-ghost {
     font-size: 68px;
