@@ -288,6 +288,7 @@ const loadPublications = async () => {
     };
 
     renderPublications(items);
+    initPublicationSpotlight(items);
 
     // Search functionality
     if (searchInput) {
@@ -306,6 +307,101 @@ const loadPublications = async () => {
   } catch (error) {
     console.error('Error loading publications:', error);
   }
+};
+
+// ========================================
+// Publication Spotlight (flip card)
+// ========================================
+const initPublicationSpotlight = (items) => {
+  const spotlight = document.getElementById('pub-spotlight');
+  const card = document.getElementById('flip-card');
+  const front = document.getElementById('flip-front');
+  const back = document.getElementById('flip-back');
+  const ghost = document.getElementById('spotlight-ghost');
+  const dotsWrap = document.getElementById('spotlight-dots');
+
+  if (!spotlight || !card || !front || !back || !ghost || !dotsWrap) return;
+  if (!Array.isArray(items) || items.length === 0) return;
+
+  // Feature the most-cited publications
+  const featured = [...items]
+    .sort((a, b) => (b.citations || 0) - (a.citations || 0))
+    .slice(0, 6);
+
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
+
+  const clockIcon = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`;
+
+  const faceHTML = (pub) => {
+    const link = pub.link || `https://scholar.google.com/scholar?q=${encodeURIComponent(pub.title)}`;
+    const venue = pub.venue && pub.venue.length > 34 ? pub.venue.slice(0, 32) + '…' : pub.venue;
+    return `
+      <h3 class="spotlight-title">${esc(pub.title)}</h3>
+      ${pub.authors ? `<p class="spotlight-authors">${esc(pub.authors)}</p>` : ''}
+      <div class="spotlight-segments">
+        <span class="spotlight-segment">${clockIcon}&nbsp;${esc(pub.year)} <span class="seg-label">year</span></span>
+        ${venue ? `<span class="spotlight-segment">${esc(venue)}</span>` : ''}
+        ${pub.citations ? `<span class="spotlight-segment">${esc(pub.citations)} <span class="seg-label">citations</span></span>` : ''}
+      </div>
+      <div class="spotlight-actions">
+        <a class="btn btn-primary" target="_blank" rel="noopener" href="${esc(link)}">Read Paper →</a>
+      </div>
+    `;
+  };
+
+  let index = 0;
+  let rotation = 0;
+  let paused = false;
+  let timer = null;
+
+  const pad = (n) => String(n + 1).padStart(2, '0');
+
+  const dots = featured.map((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'spotlight-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', `Show publication ${i + 1}`);
+    dot.addEventListener('click', () => {
+      if (i !== index) flipTo(i);
+      restartTimer();
+    });
+    dotsWrap.appendChild(dot);
+    return dot;
+  });
+
+  const updateIndicators = () => {
+    ghost.textContent = pad(index);
+    dots.forEach((d, i) => d.classList.toggle('active', i === index));
+  };
+
+  const flipTo = (nextIndex) => {
+    index = nextIndex % featured.length;
+    rotation += 180;
+    // The face about to become visible gets the new content
+    const showingBack = (rotation / 180) % 2 === 1;
+    (showingBack ? back : front).innerHTML = faceHTML(featured[index]);
+    card.style.transform = `rotateY(${rotation}deg)`;
+    // Sync ghost number + dots mid-flip
+    setTimeout(updateIndicators, 450);
+  };
+
+  const restartTimer = () => {
+    if (timer) clearInterval(timer);
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion || featured.length < 2) return;
+    timer = setInterval(() => {
+      if (!paused && !document.hidden) flipTo(index + 1);
+    }, 6000);
+  };
+
+  spotlight.addEventListener('mouseenter', () => { paused = true; });
+  spotlight.addEventListener('mouseleave', () => { paused = false; });
+
+  front.innerHTML = faceHTML(featured[0]);
+  updateIndicators();
+  spotlight.hidden = false;
+  restartTimer();
 };
 
 // ========================================
