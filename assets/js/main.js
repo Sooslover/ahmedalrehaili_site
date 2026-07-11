@@ -157,29 +157,70 @@ const initScrollToTop = () => {
 // ========================================
 // Loading Animation for Cards
 // ========================================
+let revealObserver = null;
+
 const initCardAnimations = () => {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '0';
-        entry.target.style.transform = 'translateY(20px)';
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-        setTimeout(() => {
-          entry.target.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }, 100);
-
-        observer.unobserve(entry.target);
-      }
+  if (!revealObserver) {
+    revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -8% 0px'
     });
-  }, {
-    threshold: 0.1
-  });
+  }
 
-  document.querySelectorAll('.card').forEach(card => {
-    observer.observe(card);
+  // Reveal cards below the hero; the hero must appear instantly
+  document.querySelectorAll('.section .card, .section .pub, .profile-link').forEach(el => {
+    if (el.classList.contains('reveal')) return; // already handled
+
+    // Stagger by sibling position within the parent (capped at 5)
+    const siblings = Array.from(el.parentElement.children);
+    el.style.setProperty('--i', siblings.indexOf(el) % 5);
+
+    el.classList.add('reveal');
+    revealObserver.observe(el);
   });
+};
+
+// Cursor-tracking glow across card grids
+const initCardGlow = () => {
+  if (!window.matchMedia('(hover: hover)').matches) return;
+
+  document.querySelectorAll('.research-areas, .profile-links, .kpi-grid').forEach(grid => {
+    grid.addEventListener('pointermove', (e) => {
+      grid.querySelectorAll('.research-card, .profile-link, .kpi').forEach(card => {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    });
+  });
+};
+
+// Scroll progress bar (JS fallback for browsers without scroll timelines)
+const initScrollProgress = () => {
+  const bar = document.querySelector('.scroll-progress');
+  if (!bar) return;
+  if (CSS.supports('animation-timeline: scroll()')) return;
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const doc = document.documentElement;
+      const max = doc.scrollHeight - window.innerHeight;
+      bar.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
+      ticking = false;
+    });
+  }, { passive: true });
 };
 
 // ========================================
@@ -190,18 +231,22 @@ const loadMetrics = async () => {
     const response = await fetch('data/metrics.json');
     const metrics = await response.json();
 
-    // Animate numbers
+    // Animate numbers with ease-out deceleration
     const animateValue = (element, end) => {
-      const duration = 1000;
-      const start = 0;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        element.textContent = end.toLocaleString();
+        return;
+      }
+
+      const duration = 1400;
       const startTime = performance.now();
 
       const animate = (currentTime) => {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
 
-        const value = Math.floor(progress * (end - start) + start);
-        element.textContent = value;
+        element.textContent = Math.round(eased * end).toLocaleString();
 
         if (progress < 1) {
           requestAnimationFrame(animate);
@@ -215,9 +260,11 @@ const loadMetrics = async () => {
     const hindexEl = document.getElementById('hindex');
     const i10El = document.getElementById('i10');
 
-    if (citationsEl) animateValue(citationsEl, metrics.citations || 0);
-    if (hindexEl) animateValue(hindexEl, metrics.h_index || 0);
-    if (i10El) animateValue(i10El, metrics.i10_index || 0);
+    // Stagger the three tiles left-to-right
+    [[citationsEl, metrics.citations], [hindexEl, metrics.h_index], [i10El, metrics.i10_index]]
+      .forEach(([el, value], i) => {
+        if (el) setTimeout(() => animateValue(el, value || 0), i * 150);
+      });
 
     // Update about section
     const citationsTextEl = document.getElementById('citations-text');
@@ -551,6 +598,8 @@ document.addEventListener('DOMContentLoaded', () => {
   loadMetrics();
   loadPublications();
   initContactForm();
+  initCardGlow();
+  initScrollProgress();
 
   // Theme toggle button
   const themeToggleBtn = document.getElementById('theme-toggle');
