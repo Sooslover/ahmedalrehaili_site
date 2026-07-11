@@ -473,15 +473,14 @@ a:hover {
   padding: 28px 32px;
   border-radius: 24px;
   border: 1px solid #000000;
-  background: linear-gradient(120deg, rgba(30, 58, 138, 0.07), rgba(30, 58, 138, 0.03));
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  /* Opaque base so the spinning ring never bleeds through the text */
+  background: linear-gradient(120deg, rgba(30, 58, 138, 0.05), rgba(30, 58, 138, 0.02)), var(--card);
   box-shadow: var(--shadow-md);
   overflow: hidden;
 }
 
 :root.dark .flip-face {
-  background: linear-gradient(120deg, rgba(203, 191, 255, 0.11), rgba(203, 191, 255, 0.05));
+  background: linear-gradient(120deg, rgba(203, 191, 255, 0.08), rgba(203, 191, 255, 0.03)), var(--card);
   border-color: #ffffff;
 }
 
