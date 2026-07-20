@@ -22,13 +22,14 @@
   --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.08);
   --shadow-xl: 0 24px 48px rgba(0, 0, 0, 0.1);
   --shadow-colored: 0 12px 32px rgba(30, 58, 138, 0.12);
+  --ring: rgba(30, 58, 138, 0.16);
 }
 
 :root.dark {
   /* Dark theme - Deep Purple Night (novapay-inspired) */
   --bg: #0c0a16;
-  --surface: #17142a;
-  --card: #1a1630;
+  --surface: #131024;
+  --card: #221b40;
   --text: #f2f0f8;
   --text-secondary: #d9d5e8;
   --muted: #cabfe6;
@@ -45,6 +46,7 @@
   --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.8);
   --shadow-xl: 0 30px 80px rgba(0, 0, 0, 0.6);
   --shadow-colored: 0 12px 32px rgba(127, 82, 239, 0.3);
+  --ring: rgba(164, 131, 245, 0.28);
 }
 
 /* ========================================
@@ -172,18 +174,22 @@ a:hover {
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.links a:hover {
+.links a:hover,
+.links a.active {
   color: var(--primary);
-  border-color: var(--border);
-  background: var(--surface);
+  border-color: rgba(30, 58, 138, 0.22);
+  background: rgba(30, 58, 138, 0.08);
   text-decoration: none;
 }
 
 .links a.active {
-  color: var(--primary);
   font-weight: 600;
-  border-color: var(--border);
-  background: var(--surface);
+}
+
+:root.dark .links a:hover,
+:root.dark .links a.active {
+  border-color: rgba(164, 131, 245, 0.38);
+  background: rgba(164, 131, 245, 0.14);
 }
 
 /* Mobile menu toggle */
@@ -288,18 +294,38 @@ a:hover {
   text-decoration: none;
 }
 
+:root.dark .btn-primary {
+  color: #16112b;
+}
+
+:root.dark .btn-primary:hover {
+  background: #b9a1f8;
+  border-color: #b9a1f8;
+  color: #16112b;
+}
+
+:root.dark .badge:hover,
+:root.dark .research-card:hover .research-icon {
+  color: #16112b;
+}
+
 .btn-ghost {
-  background: var(--primary);
-  color: #ffffff;
-  border-color: var(--primary);
+  background: transparent;
+  color: var(--primary);
+  border: 1.5px solid var(--primary);
 }
 
 .btn-ghost:hover {
-  background: var(--primary-hover);
-  border-color: var(--primary-hover);
+  background: var(--primary);
+  color: #ffffff;
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(30, 58, 138, 0.25);
   text-decoration: none;
+}
+
+:root.dark .btn-ghost:hover {
+  color: #16112b;
+  box-shadow: 0 4px 12px rgba(116, 66, 233, 0.35);
 }
 
 .switch {
@@ -315,8 +341,12 @@ a:hover {
 }
 
 .switch:hover {
-  background: var(--surface);
+  background: rgba(30, 58, 138, 0.08);
   border-color: var(--primary);
+}
+
+:root.dark .switch:hover {
+  background: rgba(164, 131, 245, 0.14);
 }
 
 .switch svg {
@@ -489,10 +519,10 @@ a:hover {
 }
 
 .spotlight-title {
-  font-size: 19px;
+  font-size: 20px;
   font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   color: var(--primary);
   margin: 0;
@@ -598,7 +628,7 @@ a:hover {
   }
 
   .spotlight-title {
-    font-size: 18px;
+    font-size: 17px;
   }
 
   .spotlight-ghost {
@@ -658,8 +688,8 @@ a:hover {
 }
 
 .hero-title {
-  font-size: 32px;
-  font-weight: 700;
+  font-size: clamp(32px, 4vw, 46px);
+  font-weight: 800;
   line-height: 1.1;
   margin: 0 0 10px;
   color: var(--text);
@@ -691,26 +721,15 @@ a:hover {
     padding: 60px 0;
   }
 
-  .hero-title {
-    font-size: 36px;
-  }
-
   .subtitle {
     font-size: 18px;
   }
 
-  .hero-aside {
-    order: -1;
-  }
 }
 
 @media (max-width: 640px) {
   .hero {
     padding: 40px 0;
-  }
-
-  .hero-title {
-    font-size: 32px;
   }
 
   .subtitle {
@@ -906,6 +925,7 @@ a:hover {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 14px;
+  align-items: start;
 }
 
 .grid-3 {
@@ -927,7 +947,21 @@ a:hover {
 
 @media (max-width: 640px) {
   .grid-3 {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .kpi {
+    padding: 14px 6px;
+  }
+
+  .kpi .num {
+    font-size: 22px;
+  }
+
+  .kpi .label {
+    font-size: 10px;
+    letter-spacing: 0.5px;
   }
 }
 
@@ -940,8 +974,8 @@ a:hover {
 }
 
 .section-title {
-  font-size: 26px;
-  font-weight: 600;
+  font-size: clamp(26px, 3vw, 32px);
+  font-weight: 700;
   margin: 0 0 20px;
   color: var(--text);
   letter-spacing: -0.03em;
@@ -972,8 +1006,7 @@ a:hover {
   }
 
   .section-title {
-    font-size: 28px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
 }
 
@@ -1133,7 +1166,7 @@ a:hover {
   outline: none;
   border-color: var(--primary);
   background: var(--card);
-  box-shadow: 0 0 0 4px rgba(82, 82, 82, 0.08);
+  box-shadow: 0 0 0 4px var(--ring);
   transform: translateY(-1px);
 }
 
@@ -1158,7 +1191,7 @@ a:hover {
 #pub-search:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 4px rgba(82, 82, 82, 0.08);
+  box-shadow: 0 0 0 4px var(--ring);
   transform: translateY(-1px);
 }
 
@@ -1343,9 +1376,15 @@ a:hover {
 }
 
 .badge-primary {
-  background: linear-gradient(135deg, var(--primary), var(--accent));
-  color: white;
-  border-color: transparent;
+  background: rgba(30, 58, 138, 0.08);
+  color: var(--primary);
+  border-color: rgba(30, 58, 138, 0.25);
+}
+
+:root.dark .badge-primary {
+  background: rgba(164, 131, 245, 0.14);
+  color: #c9b8f9;
+  border-color: rgba(164, 131, 245, 0.4);
 }
 
 .badge-primary:hover {
@@ -1424,8 +1463,8 @@ a:hover {
 
 .research-areas {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
 }
 
 .research-card {
@@ -1443,6 +1482,10 @@ a:hover {
   height: 48px;
   margin: 0 auto 12px;
   background: var(--surface);
+}
+
+:root.dark .research-icon {
+  background: rgba(164, 131, 245, 0.1);
   border: 1px solid var(--border);
   border-radius: 12px;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -1867,4 +1910,9 @@ a:hover {
     transform: none;
     transition: none;
   }
+}
+
+/* Prevent awkward title wrap */
+.nowrap {
+  white-space: nowrap;
 }
