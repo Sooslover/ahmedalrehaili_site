@@ -2145,3 +2145,63 @@ section[id] {
     font-size: 18px;
   }
 }
+
+/* ========================================
+   Contact form anti-spam
+   ======================================== */
+
+/* Honeypot: invisible to humans, tempting to bots */
+.honeypot-field {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.captcha-row {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.captcha-row input {
+  flex: 1;
+}
+
+.captcha-refresh {
+  flex-shrink: 0;
+  width: 46px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--text-secondary);
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.captcha-refresh:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--card);
+}
+
+#captcha-question {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.form-group input.input-error,
+.form-group textarea.input-error {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.12);
+}
+
+:root.dark .form-group input.input-error,
+:root.dark .form-group textarea.input-error {
+  border-color: #f87171;
+  box-shadow: 0 0 0 4px rgba(248, 113, 113, 0.16);
+}
