@@ -375,6 +375,17 @@
               <label for="message">Message</label>
               <textarea id="message" name="message" rows="5" required></textarea>
             </div>
+            <div class="form-group honeypot-field" aria-hidden="true">
+              <label for="website">Website</label>
+              <input type="text" id="website" name="_gotcha" tabindex="-1" autocomplete="off">
+            </div>
+            <div class="form-group">
+              <label for="captcha-answer">Human check: <span id="captcha-question">…</span></label>
+              <div class="captcha-row">
+                <input type="text" id="captcha-answer" name="captcha" inputmode="numeric" autocomplete="off" placeholder="Your answer" required>
+                <button type="button" id="captcha-refresh" class="captcha-refresh" aria-label="Get a new question" title="New question">↻</button>
+              </div>
+            </div>
             <button class="btn btn-primary" type="submit" id="submit-btn">
               <span class="btn-text">Send Message</span>
               <span class="btn-loading" style="display: none;">

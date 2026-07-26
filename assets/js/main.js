@@ -533,14 +533,84 @@ const initContactForm = () => {
 
   if (!btnText || !btnLoading) return;
 
+  // --- Human check (math captcha) ---
+  const captchaQuestion = document.getElementById('captcha-question');
+  const captchaAnswer = document.getElementById('captcha-answer');
+  const captchaRefresh = document.getElementById('captcha-refresh');
+  let expectedAnswer = null;
+
+  const newCaptcha = () => {
+    if (!captchaQuestion || !captchaAnswer) return;
+    const a = 2 + Math.floor(Math.random() * 8); // 2-9
+    const b = 2 + Math.floor(Math.random() * 8); // 2-9
+    if (Math.random() < 0.5) {
+      expectedAnswer = a + b;
+      captchaQuestion.textContent = `What is ${a} + ${b}?`;
+    } else {
+      const hi = Math.max(a, b);
+      const lo = Math.min(a, b);
+      expectedAnswer = hi - lo;
+      captchaQuestion.textContent = `What is ${hi} − ${lo}?`;
+    }
+    captchaAnswer.value = '';
+  };
+
+  newCaptcha();
+  if (captchaRefresh) captchaRefresh.addEventListener('click', newCaptcha);
+
+  const showError = (message, field) => {
+    formStatus.className = 'form-status error';
+    formStatus.textContent = message;
+    formStatus.style.display = 'block';
+    if (field) {
+      field.classList.add('input-error');
+      field.focus();
+      field.addEventListener('input', () => field.classList.remove('input-error'), { once: true });
+    }
+  };
+
+  // Stricter than the browser's type=email (requires a real domain with a TLD)
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    const nameField = document.getElementById('name');
+    const emailField = document.getElementById('email');
+    const messageField = document.getElementById('message');
+    const honeypot = document.getElementById('website');
+
+    // Honeypot: bots fill hidden fields — silently drop, never call Formspree
+    if (honeypot && honeypot.value.trim() !== '') {
+      formStatus.className = 'form-status success';
+      formStatus.textContent = '✓ Message sent successfully!';
+      formStatus.style.display = 'block';
+      form.reset();
+      newCaptcha();
+      return;
+    }
+
+    // Validate email format strictly
+    const email = emailField.value.trim();
+    if (!EMAIL_RE.test(email)) {
+      showError('✗ Please enter a valid email address (e.g. name@example.com).', emailField);
+      return;
+    }
+
+    // Validate the human check BEFORE sending — wrong answers never
+    // reach Formspree, so spam cannot consume the submission quota
+    const given = captchaAnswer ? captchaAnswer.value.trim() : '';
+    if (expectedAnswer === null || given === '' || Number(given) !== expectedAnswer) {
+      newCaptcha();
+      showError('✗ Wrong answer to the human check — please try the new question.', captchaAnswer);
+      return;
+    }
+
     // Get form data
     const formData = {
-      name: document.getElementById('name').value,
-      email: document.getElementById('email').value,
-      message: document.getElementById('message').value
+      name: nameField.value.trim(),
+      email: email,
+      message: messageField.value.trim()
     };
 
     // Show loading state
@@ -564,14 +634,18 @@ const initContactForm = () => {
       if (success) {
         // Success
         formStatus.className = 'form-status success';
+        formStatus.style.display = 'block';
         formStatus.textContent = '✓ Message sent successfully! I\'ll get back to you soon.';
         form.reset();
+        newCaptcha();
       }
     } catch (error) {
       // Error
       formStatus.className = 'form-status error';
+      formStatus.style.display = 'block';
       formStatus.textContent = '✗ Failed to send message. Please try again or email me directly at Ahmed_murayshid@hotmail.com';
       console.error('Form submission error:', error);
+      newCaptcha();
     } finally {
       // Reset button state
       submitBtn.disabled = false;
