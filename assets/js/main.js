@@ -357,6 +357,73 @@ const loadPublications = async () => {
 };
 
 // ========================================
+// Announcements
+// ========================================
+const loadAnnouncements = async () => {
+  const list = document.getElementById('announcement-list');
+  if (!list) return;
+
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
+
+  try {
+    const response = await fetch('data/announcements.json');
+    const items = await response.json();
+
+    if (!Array.isArray(items) || items.length === 0) {
+      list.innerHTML = '<p class="meta">No announcements at the moment — check back soon.</p>';
+      return;
+    }
+
+    // Pinned first, then newest first
+    const sorted = [...items].sort((a, b) =>
+      ((b.pinned ? 1 : 0) - (a.pinned ? 1 : 0)) ||
+      (new Date(b.date) - new Date(a.date))
+    );
+
+    const now = Date.now();
+    const NEW_WINDOW_MS = 14 * 24 * 60 * 60 * 1000;
+
+    list.innerHTML = sorted.map(item => {
+      const d = new Date(`${item.date}T00:00:00`);
+      const valid = !isNaN(d.getTime());
+      const day = valid ? d.getDate() : '–';
+      const month = valid ? d.toLocaleString('en', { month: 'short' }) : '';
+      const year = valid ? d.getFullYear() : esc(item.date);
+      const isNew = valid && (now - d.getTime()) < NEW_WINDOW_MS && (now - d.getTime()) >= 0;
+
+      return `
+        <article class="card announcement">
+          <div class="announcement-date" aria-label="${esc(item.date)}">
+            <span class="day">${day}</span>
+            <span class="month">${month}</span>
+            <span class="year">${year}</span>
+          </div>
+          <div>
+            <div class="announcement-meta">
+              ${item.tag ? `<span class="announcement-tag">${esc(item.tag)}</span>` : ''}
+              ${isNew ? '<span class="announcement-new">NEW</span>' : ''}
+              ${item.pinned ? '<span class="announcement-pin">📌 Pinned</span>' : ''}
+            </div>
+            <h3>${esc(item.title)}</h3>
+            <p>${esc(item.body)}</p>
+            ${item.link ? `<a class="announcement-link" href="${esc(item.link)}" target="_blank" rel="noopener">Read more →</a>` : ''}
+          </div>
+        </article>
+      `;
+    }).join('');
+
+    // Observe the new cards for the reveal animation
+    initCardAnimations();
+
+  } catch (error) {
+    console.error('Error loading announcements:', error);
+    list.innerHTML = '<p class="meta">No announcements at the moment — check back soon.</p>';
+  }
+};
+
+// ========================================
 // Publication Spotlight (flip card)
 // ========================================
 const initPublicationSpotlight = (items) => {
@@ -596,6 +663,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollToTop();
   initCardAnimations();
   loadMetrics();
+  loadAnnouncements();
   loadPublications();
   initContactForm();
   initCardGlow();

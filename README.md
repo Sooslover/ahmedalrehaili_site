@@ -61,6 +61,26 @@ ahmedalrehaili_site/
 
 ## 📝 Updating Content
 
+### Announcements
+Edit `data/announcements.json` to post news for students and fellow researchers. Each entry looks like:
+
+```json
+{
+  "date": "2026-07-20",
+  "tag": "Students",
+  "title": "Office hours for the new semester",
+  "body": "Details of the announcement go here.",
+  "link": "https://optional-link.example.com",
+  "pinned": true
+}
+```
+
+- `date` must be `YYYY-MM-DD`; newest announcements appear first
+- `tag` is a short label shown as a pill (e.g. "Students", "Research", "Event")
+- `link` is optional — leave `""` to hide the Read more link
+- `pinned: true` keeps an announcement at the top
+- Announcements from the last 14 days automatically get a pulsing NEW badge
+
 ### Publications
 Edit `data/publications.json` with new publications following the existing format.
 
