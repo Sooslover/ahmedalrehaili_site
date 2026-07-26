@@ -1,0 +1,26 @@
+[
+  {
+    "date": "2026-07-20",
+    "tag": "Students",
+    "title": "Office hours for the new semester",
+    "body": "Office hours will be announced at the start of the semester. Students can also reach me by email anytime for questions about coursework or supervision.",
+    "link": "",
+    "pinned": true
+  },
+  {
+    "date": "2026-06-15",
+    "tag": "Research",
+    "title": "New paper published in IET Blockchain",
+    "body": "Our paper on empowering the adoption of blockchain-based cryptocurrency as a payment method is now available. Feedback and collaboration inquiries are welcome.",
+    "link": "https://scholar.google.com/citations?user=tMmhq2MAAAAJ",
+    "pinned": false
+  },
+  {
+    "date": "2026-05-02",
+    "tag": "Event",
+    "title": "Looking for research collaborators in IoT security",
+    "body": "I am currently exploring collaborations on IoT security and smart city architectures. If you work in this space, please get in touch through the contact form.",
+    "link": "",
+    "pinned": false
+  }
+]
