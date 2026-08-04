@@ -643,7 +643,7 @@ const initContactForm = () => {
       // Error
       formStatus.className = 'form-status error';
       formStatus.style.display = 'block';
-      formStatus.textContent = '✗ Failed to send message. Please try again or email me directly at Ahmed_murayshid@hotmail.com';
+      formStatus.textContent = '✗ Failed to send message. Please try again or email me directly at Alrehailiium@gmail.com';
       console.error('Form submission error:', error);
       newCaptcha();
     } finally {
@@ -701,7 +701,7 @@ const sendViaEmailJS = async (formData) => {
     from_name: formData.name,
     from_email: formData.email,
     message: formData.message,
-    to_email: 'Ahmed_murayshid@hotmail.com'
+    to_email: 'Alrehailiium@gmail.com'
   });
 
   if (response.status !== 200) {

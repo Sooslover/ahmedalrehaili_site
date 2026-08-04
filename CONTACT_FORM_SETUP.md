@@ -17,7 +17,7 @@ Formspree is the simplest option and perfect for personal websites.
 2. **Create a New Form**
    - After logging in, click "New Project" or "New Form"
    - Name your form (e.g., "Contact Form")
-   - Set the email to receive submissions: `Ahmed_murayshid@hotmail.com`
+   - Set the email to receive submissions: `Alrehailiium@gmail.com`
    - Copy the **Form ID** (looks like: `xwkgpzjr`)
 
 3. **Update Your Website**
@@ -36,7 +36,7 @@ Formspree is the simplest option and perfect for personal websites.
 
 4. **Deploy and Test**
    - Save the file and deploy your website
-   - Test the contact form - you should receive emails at Ahmed_murayshid@hotmail.com
+   - Test the contact form - you should receive emails at Alrehailiium@gmail.com
 
 ### Free Plan Limits:
 - 50 submissions per month
@@ -70,7 +70,7 @@ EmailJS offers more customization options and template support.
      - `{{from_name}}` - Sender's name
      - `{{from_email}}` - Sender's email
      - `{{message}}` - Message content
-     - `{{to_email}}` - Your email (Ahmed_murayshid@hotmail.com)
+     - `{{to_email}}` - Your email (Alrehailiium@gmail.com)
 
    Example template:
    ```
@@ -122,7 +122,7 @@ After setup, test your contact form:
 2. Click "Send Message"
 3. You should see a loading spinner
 4. Success message: "✓ Message sent successfully! I'll get back to you soon."
-5. Check your email at Ahmed_murayshid@hotmail.com
+5. Check your email at Alrehailiium@gmail.com
 
 If you see an error message, check:
 - Your form ID/credentials are correct
