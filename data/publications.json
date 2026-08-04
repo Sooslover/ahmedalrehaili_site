@@ -120,12 +120,20 @@
     "link": "https://scholar.google.com/scholar?q=POSTER:+Blockchain-based+key+management+protocol+for+resource-constrained+IoT+devices"
   },
   {
-    "title": "Factors Influencing the Acceptance of Online Mobile Auctions in Saudi Arabia and MENA Region",
-    "authors": "Ahmed Alrehaili",
-    "venue": "International Journal of E-Business Research",
+    "title": "Factors influencing the acceptance of online mobile auctions using user-centered agile software development: an early technology acceptance model",
+    "authors": "A Namoun, A Alrehaili, A Tufail, A Natour, Y Husari, MA Al-Sharafi, et al.",
+    "venue": "Int. J. Adv. Comput. Sci. Appl 13 (11), 908-922",
     "year": "2022",
+    "citations": 6,
+    "link": "https://scholar.google.com/scholar?q=Factors+influencing+the+acceptance+of+online+mobile+auctions+using+user-centered+agile+software+development:+an+early+technology+acceptance+model"
+  },
+  {
+    "title": "BCAP-SA—Towards a Blockchain-Based Cryptocurrency Adoption Model as a Payment Method in Saudi Arabia",
+    "authors": "A Alrehaili, M White, N Beloff",
+    "venue": "International Congress on Information and Communication Technology, 137-154",
+    "year": "2023",
     "citations": 4,
-    "link": "https://scholar.google.com/scholar?q=Factors+Influencing+Acceptance+Online+Mobile+Auctions+Saudi+Arabia"
+    "link": "https://scholar.google.com/scholar?q=BCAP-SA+Blockchain-Based+Cryptocurrency+Adoption"
   },
   {
     "title": "Technology Acceptance Model for Cryptocurrency in Developing Countries",
@@ -136,27 +144,27 @@
     "link": "https://scholar.google.com/scholar?q=Technology+Acceptance+Model+Cryptocurrency+Developing+Countries"
   },
   {
-    "title": "Large User Interface Models (LUIMs): A Framework for Modeling User Interfaces",
-    "authors": "Ahmed Alrehaili",
-    "venue": "International Conference on Human-Computer Interaction",
-    "year": "2020",
-    "citations": 2,
-    "link": "https://scholar.google.com/scholar?q=Large+User+Interface+Models+Framework"
-  },
-  {
-    "title": "BCAP-SA—Towards a Blockchain-Based Cryptocurrency Adoption Model as a Payment Method in Saudi Arabia",
-    "authors": "Ahmed Alrehaili, Abdulrahman Alghamdi",
-    "venue": "Blockchain Technology Solutions for the Security of IoT-Based Healthcare Systems",
-    "year": "2023",
-    "citations": 2,
-    "link": "https://scholar.google.com/scholar?q=BCAP-SA+Blockchain-Based+Cryptocurrency+Adoption"
+    "title": "Enhanced variational graph convolutional networks with multi-scale convolutions and attention mechanisms for dynamic network analysis",
+    "authors": "AA Mir, MF Zuhairi, S Musa, F Alanazi, A Namoun, A Alrehaili",
+    "venue": "Engineering, Technology & Applied Science Research 15 (1), 19838-19847",
+    "year": "2025",
+    "citations": 3,
+    "link": "https://scholar.google.com/scholar?q=Enhanced+variational+graph+convolutional+networks+with+multi-scale+convolutions"
   },
   {
     "title": "Empowering the adoption of blockchain-based cryptocurrency as a payment method: A user-friendly educational approach",
-    "authors": "Ahmed Alrehaili, Abdulrahman Alghamdi",
-    "venue": "IET Blockchain",
+    "authors": "A Alrehaili, M White, N Beloff",
+    "venue": "IET Blockchain 5 (1), e70002",
     "year": "2025",
-    "citations": 0,
+    "citations": 2,
     "link": "https://scholar.google.com/scholar?q=Empowering+the+adoption+of+blockchain-based+cryptocurrency+as+a+payment+method"
+  },
+  {
+    "title": "Graph Convolutional Networks: A Critical Review",
+    "authors": "AA Mir, MF Zuhairi, A Alrehaili, A Tufail, A Namoun",
+    "venue": "",
+    "year": "2026",
+    "citations": 1,
+    "link": "https://scholar.google.com/scholar?q=Graph+Convolutional+Networks:+A+Critical+Review"
   }
 ]
