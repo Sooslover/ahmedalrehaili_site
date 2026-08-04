@@ -17,42 +17,42 @@
   },
   {
     "title": "Solid waste generation and disposal using machine learning approaches: a survey of solutions and challenges",
-    "authors": "Abdallah Almalih, Ahmed Alrehaili, Ali Safaa Sadiq",
-    "venue": "Sustainability",
+    "authors": "A Namoun, A Tufail, MY Khan, A Alrehaili, TA Syed, O BenRhouma",
+    "venue": "Sustainability 14 (20), 13578",
     "year": "2022",
-    "citations": 14,
+    "citations": 88,
     "link": "https://scholar.google.com/scholar?q=Solid+waste+generation+disposal+machine+learning"
   },
   {
     "title": "An ensemble learning based classification approach for the prediction of household solid waste generation",
-    "authors": "Abdallah Almalih, Mabrook Al-Rakhami, Atif Alamri, Ahmed Alrehaili",
-    "venue": "Sensors",
+    "authors": "A Namoun, BR Hussein, A Tufail, A Alrehaili, TA Syed, O BenRhouma",
+    "venue": "Sensors 22 (9), 3506",
     "year": "2022",
-    "citations": 12,
+    "citations": 79,
     "link": "https://scholar.google.com/scholar?q=ensemble+learning+classification+household+solid+waste"
   },
   {
     "title": "Data vaults for blockchain-empowered accounting information systems",
-    "authors": "Ahmed Alrehaili, Ali Maged",
-    "venue": "Journal of Information Systems and Technology Management",
+    "authors": "MI Sarwar, MW Iqbal, T Alyas, A Namoun, A Alrehaili, A Tufail, et al.",
+    "venue": "IEEE Access 9, 117306-117324",
     "year": "2021",
-    "citations": 8,
+    "citations": 106,
     "link": "https://scholar.google.com/scholar?q=Data+vaults+blockchain+accounting+information+systems"
   },
   {
     "title": "An eco-friendly multimodal route guidance system for urban areas using multi-agent technology",
-    "authors": "Abdallah Almalih, Mabrook Al-Rakhami, Abdu Gumaei, Ahmed Alrehaili",
-    "venue": "Sensors",
+    "authors": "A Namoun, A Tufail, N Mehandjiev, A Alrehaili, J Akhlaghinia, E Peytchev",
+    "venue": "Applied Sciences 11 (5), 2057",
     "year": "2021",
-    "citations": 16,
+    "citations": 56,
     "link": "https://scholar.google.com/scholar?q=eco-friendly+multimodal+route+guidance+multi-agent"
   },
   {
     "title": "A review of automated website usability evaluation tools: research issues and challenges",
-    "authors": "Ahmed Alrehaili, Tariq Alkhamissi",
-    "venue": "HCI International 2021",
+    "authors": "A Namoun, A Alrehaili, A Tufail",
+    "venue": "",
     "year": "2021",
-    "citations": 7,
+    "citations": 49,
     "link": "https://scholar.google.com/scholar?q=review+automated+website+usability+evaluation+tools"
   },
   {
@@ -88,12 +88,12 @@
     "link": "https://scholar.google.com/scholar?q=Factors+Influencing+Acceptance+Online+Mobile+Auctions+Saudi+Arabia"
   },
   {
-    "title": "AI Tools for Predicting Mobile Application Usability",
-    "authors": "Ahmed Alrehaili, Tariq Alkhamissi",
-    "venue": "HCI International 2021",
-    "year": "2021",
-    "citations": 3,
-    "link": "https://scholar.google.com/scholar?q=AI+Tools+Predicting+Mobile+Application+Usability"
+    "title": "Predicting the usability of mobile applications using AI tools: the rise of large user interface models, opportunities, and challenges",
+    "authors": "A Namoun, A Alrehaili, ZU Nisa, H Almoamari, A Tufail",
+    "venue": "Procedia Computer Science 238, 671-682",
+    "year": "2024",
+    "citations": 50,
+    "link": "https://scholar.google.com/scholar?q=Predicting+the+usability+of+mobile+applications+using+AI+tools"
   },
   {
     "title": "Large User Interface Models (LUIMs): A Framework for Modeling User Interfaces",
