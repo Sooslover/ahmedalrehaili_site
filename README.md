@@ -1,6 +1,6 @@
 # Ahmed Alrehaili - Academic Portfolio
 
-Professional academic portfolio website for Dr. Ahmed Alrehaili, showcasing research in Blockchain, IoT, Cloud Computing, and Technology Acceptance Models.
+Professional academic portfolio website for Ahmed Alrehaili, showcasing research in Blockchain, IoT, Cloud Computing, and Technology Acceptance Models.
 
 ## 🌐 Live Website
 
